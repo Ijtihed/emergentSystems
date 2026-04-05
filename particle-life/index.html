@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>particle life — emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=6">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Particle Life</span>
+        </header>
+
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Jeffrey Ventrella, Clusters, 2005. Popularized by Hunar Ahmad (brainxyz) in 2022. N particle types with pairwise attraction and repulsion forces. Complexity arises from a simple force matrix, no collision detection needed.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Each particle type has an attraction or repulsion force toward every other type, defined by an NxN matrix. Particles within a given range experience these forces, updating their velocity and position each frame. Different matrices produce cells with membranes, orbital systems, chasing swarms, or crystalline lattices.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Artificial life research, emergent behavior from minimal rules, generative art. The parameter space is vast, with 4 types producing 16 force parameters. Most combinations have never been explored. Related to ALIEN, a GPU-accelerated massive-scale version.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="smooth"></canvas>
+        </div>
+        <div class="usage">
+            <span class="key">random</span> generates new force matrix<span class="sep">·</span><span class="key">click</span> to attract particles toward cursor<span class="sep">·</span>adjust <span class="key">friction</span> and <span class="key">force range</span> to change dynamics
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>types</label>
+                <select id="numTypes">
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label>friction</label>
+                <input type="range" id="friction" min="1" max="20" value="10">
+            </div>
+            <div class="ctrl">
+                <label>force range</label>
+                <input type="range" id="forceRange" min="20" max="150" value="80">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=6"></script>
+</body>
+</html>

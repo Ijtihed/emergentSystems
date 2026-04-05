@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>turing patterns — emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=6">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Multi-Scale Turing Patterns</span>
+        </header>
+
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Jonathan McCabe, Cyclic Symmetric Multi-Scale Turing Patterns, Bridges 2010. Extends classical Turing instability to multiple spatial scales simultaneously, producing patterns that look like alien skin, coral reefs, or microscope slides.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Multiple activator-inhibitor pairs operate at different blur radii. At each pixel, the scale with the smallest activator-minus-inhibitor magnitude wins, nudging the pixel value up or down. Spots form inside stripes inside whorls, all at different resolutions simultaneously.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Procedural texture generation for film and games, generative art producing surfaces unlike any other algorithm, mathematical study of multi-scale pattern formation and symmetry breaking.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="smooth"></canvas>
+        </div>
+        <div class="usage">
+            <span class="key">random</span> regenerates the noise seed<span class="sep">·</span>adjust <span class="key">scales</span> to change pattern complexity<span class="sep">·</span>patterns emerge over several seconds
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>scales</label>
+                <input type="range" id="numScales" min="2" max="6" value="5">
+            </div>
+            <div class="ctrl">
+                <label>speed</label>
+                <input type="range" id="speed" min="1" max="10" value="5">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="pauseBtn">pause</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">running</span>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=6"></script>
+</body>
+</html>

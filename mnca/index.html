@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>mnca — emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=6">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Multiple Neighborhood Cellular Automata</span>
+        </header>
+
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Slackermanz, 2014. Extension of traditional CA using multiple concentric ring-shaped neighborhoods, each with its own birth and death thresholds. Produces amoeba-like blobs, mitosis, worms, solitons, and cell colonies with visible membranes.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Each pixel computes the average of alive neighbors within each ring neighborhood. Rules are evaluated in order, if a ring average falls within a threshold range, the pixel is set alive or dead. The last matching rule wins. Multiple rings at different radii create the complex emergent structures.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Produces robust soliton-like structures with individualized identities, non-destructive interactions, self-duplication, flocking, crystalline lattices, and elastic collisions. Featured in Softology Visions of Chaos with thousands of discovered patterns.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            choose a <span class="key">preset</span> to see different behaviors<span class="sep">·</span><span class="key">random</span> generates a fresh starting state<span class="sep">·</span><span class="key">click</span> to disturb the grid
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>preset</label>
+                <select id="preset">
+                    <option value="0">mitosis blobs</option>
+                    <option value="1">worms</option>
+                    <option value="2">solitons</option>
+                    <option value="3">cell colonies</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">running</span>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=6"></script>
+</body>
+</html>

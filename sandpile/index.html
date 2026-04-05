@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>sandpile — emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=6">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Abelian Sandpile</span>
+        </header>
+
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Bak, Tang, and Wiesenfeld, 1987. The canonical model of self-organized criticality. Connected to Markov processes, combinatorics, algebraic geometry, tropical geometry, and the Tutte polynomial.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Drop grains of sand on pixels. Any pixel with 4 or more grains topples, sending 1 grain to each cardinal neighbor. The order of toppling does not matter, that is what makes it abelian. Dropping millions of grains at the origin produces fractal mandala patterns with self-similar structure at every zoom level.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Models self-organized criticality in physics, neural avalanches in neuroscience, earthquake cascades in seismology. The fractal identity element has deep connections to algebraic geometry and chip-firing games on graphs.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            <span class="key">click</span> to drop grains<span class="sep">·</span><span class="key">drop amount</span> controls how many grains per click<span class="sep">·</span><span class="key">center drop</span> builds the classic fractal mandala
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>drop amount</label>
+                <input type="range" id="dropAmount" min="1" max="6" value="3">
+                <span class="val" id="dropVal">1000</span>
+            </div>
+            <div class="ctrl">
+                <button id="centerBtn">center drop</button>
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random scatter</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">click to drop grains</span>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=6"></script>
+</body>
+</html>

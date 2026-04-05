@@ -49,6 +49,8 @@
     let Du = 0.21, Dv = 0.105;
     let feed = presets.coral.f;
     let kill = presets.coral.k;
+    let feedMap = new Float32Array(N);
+    let killMap = new Float32Array(N);
     let brushSize = 12;
     let mouseDown = false;
     let mouseRight = false;
@@ -57,6 +59,8 @@
         u.fill(1.0);
         v.fill(0.0);
         deform.fill(0.0);
+        feedMap.fill(feed);
+        killMap.fill(kill);
         const cx = SIZE / 2, cy = SIZE / 2;
         seedAt(cx, cy, 20);
         seedAt(cx - 50, cy + 30, 12);
@@ -93,9 +97,10 @@
 
                     const d = 1.0 + deform[idx] * 3.0;
                     const uvv = u[idx] * v[idx] * v[idx];
+                    const lf = feedMap[idx], lk = killMap[idx];
 
-                    uN[idx] = u[idx] + (Du * d * lapU - uvv + feed * (1.0 - u[idx]));
-                    vN[idx] = v[idx] + (Dv * d * lapV + uvv - (feed + kill) * v[idx]);
+                    uN[idx] = u[idx] + (Du * d * lapU - uvv + lf * (1.0 - u[idx]));
+                    vN[idx] = v[idx] + (Dv * d * lapV + uvv - (lf + lk) * v[idx]);
 
                     if (uN[idx] < 0) uN[idx] = 0;
                     if (uN[idx] > 1) uN[idx] = 1;
@@ -156,28 +161,33 @@
                 } else if (type === 'inhibit') {
                     v[idx] = Math.max(0, v[idx] - 0.3 * falloff);
                     u[idx] = Math.min(1, u[idx] + 0.15 * falloff);
+                } else if (type === 'paintfk') {
+                    feedMap[idx] += (feed - feedMap[idx]) * 0.3 * falloff;
+                    killMap[idx] += (kill - killMap[idx]) * 0.3 * falloff;
                 }
             }
         }
     }
 
+    function getBrushType(e) {
+        if (e.button === 2) return 'inhibit';
+        if (e.shiftKey) return 'seed';
+        if (e.ctrlKey) return 'paintfk';
+        return 'deform';
+    }
+
     canvas.addEventListener('mousedown', (e) => {
         e.preventDefault();
         const p = canvasCoords(e);
-        if (e.button === 2) {
-            mouseRight = true;
-            applyBrush(p.x, p.y, 'inhibit');
-        } else if (e.shiftKey) {
-            applyBrush(p.x, p.y, 'seed');
-        } else {
-            mouseDown = true;
-            applyBrush(p.x, p.y, 'deform');
-        }
+        const type = getBrushType(e);
+        if (type === 'inhibit') mouseRight = true;
+        else mouseDown = true;
+        applyBrush(p.x, p.y, type);
     });
 
     canvas.addEventListener('mousemove', (e) => {
         const p = canvasCoords(e);
-        if (mouseDown) applyBrush(p.x, p.y, e.shiftKey ? 'seed' : 'deform');
+        if (mouseDown) applyBrush(p.x, p.y, getBrushType(e));
         if (mouseRight) applyBrush(p.x, p.y, 'inhibit');
     });
 
@@ -199,6 +209,8 @@
     function setFeedKill(f, k) {
         feed = f;
         kill = k;
+        feedMap.fill(f);
+        killMap.fill(k);
         feedSlider.value = ((f - 0.01) / 0.08 * 100) | 0;
         killSlider.value = ((k - 0.03) / 0.04 * 100) | 0;
         updateFeedKillDisplay();
