@@ -276,10 +276,8 @@
         }
         learning = false;
         running = true;
-        grid = new Uint8Array(target);
-        for (let i = 0; i < grid.length; i++) {
-            if (Math.random() < 0.2) grid[i] = 1 - grid[i];
-        }
+        const tDensity = target.reduce((a, b) => a + b, 0) / (GRID * GRID);
+        grid = randomInit(Math.max(0.1, tDensity));
         generation = 0;
         animate();
     }
@@ -289,6 +287,13 @@
         tickFps();
         grid = runCA(grid, bestRule, 1);
         generation++;
+        if (generation % 60 === 0) {
+            const count = 3 + (Math.random() * 6) | 0;
+            for (let i = 0; i < count; i++) {
+                const idx = (Math.random() * GRID * GRID) | 0;
+                grid[idx] = 1 - grid[idx];
+            }
+        }
         renderGrid(runCtx, grid, CELL_RUN);
         statusEl.textContent = `running · gen ${generation}`;
         animFrame = requestAnimationFrame(animate);

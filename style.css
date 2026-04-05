@@ -232,6 +232,12 @@ a:hover {
     color: var(--text-dim);
 }
 
+.info-grid a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 @media (max-width: 800px) {
     .info-grid {
         grid-template-columns: 1fr;
