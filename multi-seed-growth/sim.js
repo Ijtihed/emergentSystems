@@ -27,12 +27,11 @@
         [220, 140, 180], [160, 200, 100]
     ];
 
-    // grid[i] = 0 (empty) or seed index (1-based)
     const grid = new Uint8Array(W * H);
-    // resistance map for invasion percolation
     const resistance = new Float32Array(W * H);
-    // boundary: set of {x, y, owner} for active growth front
-    let boundary = [];
+    // Deduplicated boundary: one entry per cell, owner = first seed to reach it
+    const boundaryOwner = new Uint8Array(W * H);
+    let boundaryList = []; // array of flat indices
     let seedCount = 0;
     let model = 'eden';
     let stepsPerFrame = 20;
@@ -45,76 +44,93 @@
 
     function init() {
         grid.fill(0);
-        boundary = [];
+        boundaryOwner.fill(0);
+        boundaryList = [];
         seedCount = 0;
         totalFilled = 0;
         initResistance();
+    }
+
+    function addToBoundary(x, y, owner) {
+        const idx = y * W + x;
+        if (grid[idx] > 0) return;
+        if (boundaryOwner[idx] > 0) return; // already in boundary
+        boundaryOwner[idx] = owner;
+        boundaryList.push(idx);
     }
 
     function placeSeed(x, y) {
         if (x < 0 || x >= W || y < 0 || y >= H) return;
         if (grid[y * W + x] > 0) return;
         seedCount++;
-        grid[y * W + x] = seedCount;
+        const owner = seedCount;
+        grid[y * W + x] = owner;
         totalFilled++;
-        addBoundaryNeighbors(x, y, seedCount);
-    }
-
-    function addBoundaryNeighbors(x, y, owner) {
+        boundaryOwner[y * W + x] = 0; // no longer boundary
         const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
         for (const [dx, dy] of dirs) {
             const nx = x + dx, ny = y + dy;
-            if (nx >= 0 && nx < W && ny >= 0 && ny < H && grid[ny * W + nx] === 0) {
-                boundary.push({ x: nx, y: ny, owner });
+            if (nx >= 0 && nx < W && ny >= 0 && ny < H) {
+                addToBoundary(nx, ny, owner);
             }
         }
     }
 
-    function growEden() {
-        if (boundary.length === 0) return;
-        // Remove filled entries lazily
-        let attempts = 0;
-        while (attempts < boundary.length) {
-            const idx = (Math.random() * boundary.length) | 0;
-            const b = boundary[idx];
-            if (grid[b.y * W + b.x] === 0) {
-                grid[b.y * W + b.x] = b.owner;
-                totalFilled++;
-                addBoundaryNeighbors(b.x, b.y, b.owner);
-                boundary[idx] = boundary[boundary.length - 1];
-                boundary.pop();
-                return;
+    function fillCell(listIdx) {
+        const idx = boundaryList[listIdx];
+        const owner = boundaryOwner[idx];
+        if (grid[idx] > 0 || owner === 0) {
+            // Stale, remove
+            boundaryOwner[idx] = 0;
+            boundaryList[listIdx] = boundaryList[boundaryList.length - 1];
+            boundaryList.pop();
+            return false;
+        }
+        grid[idx] = owner;
+        totalFilled++;
+        boundaryOwner[idx] = 0;
+        boundaryList[listIdx] = boundaryList[boundaryList.length - 1];
+        boundaryList.pop();
+        // Add new boundary neighbors
+        const x = idx % W, y = (idx / W) | 0;
+        const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
+        for (const [dx, dy] of dirs) {
+            const nx = x + dx, ny = y + dy;
+            if (nx >= 0 && nx < W && ny >= 0 && ny < H) {
+                addToBoundary(nx, ny, owner);
             }
-            boundary[idx] = boundary[boundary.length - 1];
-            boundary.pop();
+        }
+        return true;
+    }
+
+    // Eden: uniform random among all unique boundary cells
+    function growEden() {
+        let attempts = 0;
+        while (boundaryList.length > 0 && attempts < 20) {
+            const i = (Math.random() * boundaryList.length) | 0;
+            if (fillCell(i)) return;
             attempts++;
         }
     }
 
+    // Invasion percolation: pick the global minimum resistance boundary cell
     function growInvasion() {
-        if (boundary.length === 0) return;
-        // Find boundary cell with lowest resistance
-        let bestIdx = -1, bestRes = Infinity;
-        // Sample a subset for performance
-        const sampleSize = Math.min(boundary.length, 200);
-        for (let i = 0; i < sampleSize; i++) {
-            const idx = (Math.random() * boundary.length) | 0;
-            const b = boundary[idx];
-            if (grid[b.y * W + b.x] > 0) {
-                boundary[idx] = boundary[boundary.length - 1];
-                boundary.pop();
+        if (boundaryList.length === 0) return;
+        let bestI = -1, bestRes = Infinity;
+        for (let i = boundaryList.length - 1; i >= 0; i--) {
+            const idx = boundaryList[i];
+            if (grid[idx] > 0 || boundaryOwner[idx] === 0) {
+                boundaryOwner[idx] = 0;
+                boundaryList[i] = boundaryList[boundaryList.length - 1];
+                boundaryList.pop();
                 continue;
             }
-            const r = resistance[b.y * W + b.x];
-            if (r < bestRes) { bestRes = r; bestIdx = idx; }
+            if (resistance[idx] < bestRes) {
+                bestRes = resistance[idx];
+                bestI = i;
+            }
         }
-        if (bestIdx < 0) return;
-        const b = boundary[bestIdx];
-        grid[b.y * W + b.x] = b.owner;
-        totalFilled++;
-        addBoundaryNeighbors(b.x, b.y, b.owner);
-        boundary[bestIdx] = boundary[boundary.length - 1];
-        boundary.pop();
+        if (bestI >= 0) fillCell(bestI);
     }
 
     function render() {

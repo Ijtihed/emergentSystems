@@ -1,0 +1,19 @@
+---
+description: Keep README synced with demos and references
+alwaysApply: true
+---
+
+# README sync rule
+
+When adding, removing, renaming, or changing demos, always update `README.md` in the same change.
+
+Required updates:
+- Keep the "All demos (quick links)" list complete and in sync with actual demo folders.
+- Keep demo titles and links aligned with each demo `index.html`.
+- Add or update references for newly added or changed demos.
+- Keep the device-support section accurate (desktop/mobile behavior).
+
+Before finishing:
+1. Verify every demo folder with an `index.html` appears in `README.md`.
+2. Verify each new demo's key source/paper is listed in the references section.
+3. If demo behavior changes materially, refresh the README description to match.
