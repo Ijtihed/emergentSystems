@@ -103,11 +103,6 @@
                 <div class="card-title">Evolving GoL</div>
                 <div class="card-desc">Per-cell rules that mutate and compete.</div>
             </a>
-            <a href="evoloops/index.html" class="demo-card">
-                <canvas class="demo-preview" data-sim="evoloop" width="72" height="72"></canvas>
-                <div class="card-title">Evoloops</div>
-                <div class="card-desc">Self-reproducing loops with Darwinian evolution.</div>
-            </a>
             <a href="computational-life/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="complife" width="72" height="72"></canvas>
                 <div class="card-title">Computational Life</div>
@@ -192,10 +187,6 @@
             } else if (sim === 'hetgol') {
                 for(let i=0;i<S*S;i++){const v=Math.random()<0.3;const h=(Math.random()*360)|0;px[i*4]=v?80+Math.cos(h*Math.PI/180)*80|0:8;px[i*4+1]=v?80+Math.cos((h-120)*Math.PI/180)*80|0:8;px[i*4+2]=v?80+Math.cos((h-240)*Math.PI/180)*80|0:8;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
-            } else if (sim === 'evoloop') {
-                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
-                ctx.strokeStyle='#c04040';ctx.lineWidth=2;ctx.strokeRect(S/2-8,S/2-8,16,16);ctx.strokeRect(S/2+5,S/2-12,10,10);
-                ctx.fillStyle='#2850a0';ctx.fillRect(S/2-6,S/2-6,12,12);ctx.fillRect(S/2+7,S/2-10,6,6);
             } else if (sim === 'complife') {
                 for(let i=0;i<S*S;i++){const h=Math.random()*0xFFFFFF|0;px[i*4]=(h&0xFF)*0.3+30|0;px[i*4+1]=((h>>8)&0xFF)*0.3+30|0;px[i*4+2]=((h>>16)&0xFF)*0.3+40|0;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);

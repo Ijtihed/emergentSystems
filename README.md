@@ -12,21 +12,20 @@ Interactive explorations of self-organizing computation.
 6. [Primordial Particle Systems](primordial-particles/index.html)
 7. [Swarm Chemistry](swarm-chemistry/index.html)
 8. ASAL Particle Life PP *(planned)*
-9. Evoloops *(planned)*
-10. [Cyclic Cellular Automata](cyclic-ca/index.html)
-11. [Langton's Self-Reproducing Loops](langton-loops/index.html)
-12. Neural Particle Automata *(planned)*
-13. [Multiple Neighborhood Cellular Automata](mnca/index.html)
-14. [Competitive Multi-Seed Growth](multi-seed-growth/index.html)
-15. [Dielectric Breakdown Model](dielectric-breakdown/index.html)
-16. [Multi-Scale Turing Patterns](turing-patterns/index.html)
-17. [Particle Life](particle-life/index.html)
-18. [Diffusion-Limited Aggregation](dla/index.html)
-19. [Turmites](turmites/index.html)
-20. [DiffLogic Cellular Automata](difflogic-ca/index.html)
-21. [Abelian Sandpile](sandpile/index.html)
-22. [Physarum Transport Networks](physarum/index.html)
-23. [Reaction-Diffusion](reaction-diffusion/index.html)
+9. [Cyclic Cellular Automata](cyclic-ca/index.html)
+10. [Langton's Self-Reproducing Loops](langton-loops/index.html)
+11. Neural Particle Automata *(planned)*
+12. [Multiple Neighborhood Cellular Automata](mnca/index.html)
+13. [Competitive Multi-Seed Growth](multi-seed-growth/index.html)
+14. [Dielectric Breakdown Model](dielectric-breakdown/index.html)
+15. [Multi-Scale Turing Patterns](turing-patterns/index.html)
+16. [Particle Life](particle-life/index.html)
+17. [Diffusion-Limited Aggregation](dla/index.html)
+18. [Turmites](turmites/index.html)
+19. [DiffLogic Cellular Automata](difflogic-ca/index.html)
+20. [Abelian Sandpile](sandpile/index.html)
+21. [Physarum Transport Networks](physarum/index.html)
+22. [Reaction-Diffusion](reaction-diffusion/index.html)
 
 ## Demo catalog
 
@@ -40,21 +39,20 @@ Interactive explorations of self-organizing computation.
 | 06 | [Primordial Particle Systems](primordial-particles/index.html) | Membrane-like particle collectives and proto-cell behavior. |
 | 07 | [Swarm Chemistry](swarm-chemistry/index.html) | Evolutionary swarms that form species-like collective behavior. |
 | 08 | ASAL Particle Life PP | Planned demo ranking target. |
-| 09 | Evoloops | Planned demo ranking target. |
-| 10 | [Cyclic Cellular Automata](cyclic-ca/index.html) | Spiral waves from cyclic N-species local replacement rules. |
-| 11 | [Langton's Self-Reproducing Loops](langton-loops/index.html) | Rule-based self-replication in an 8-state CA. |
-| 12 | Neural Particle Automata | Planned demo ranking target. |
-| 13 | [Multiple Neighborhood Cellular Automata](mnca/index.html) | Rich CA behavior from concentric neighborhood rules. |
-| 14 | [Competitive Multi-Seed Growth](multi-seed-growth/index.html) | Multi-origin Eden/percolation growth and fractal boundaries. |
-| 15 | [Dielectric Breakdown Model](dielectric-breakdown/index.html) | Lightning-like fractals from Laplacian growth with eta control. |
-| 16 | [Multi-Scale Turing Patterns](turing-patterns/index.html) | Pattern formation from competing activator-inhibitor scales. |
-| 17 | [Particle Life](particle-life/index.html) | Ecosystem-like structures from a pairwise interaction matrix. |
-| 18 | [Diffusion-Limited Aggregation](dla/index.html) | Fractal branching from random-walker accretion. |
-| 19 | [Turmites](turmites/index.html) | 2D Turing-machine-like agents generating highways and spirals. |
-| 20 | [DiffLogic Cellular Automata](difflogic-ca/index.html) | Reverse-engineering CA rules with a browser-native differentiable-logic-inspired workflow. |
-| 21 | [Abelian Sandpile](sandpile/index.html) | Self-organized criticality and avalanche cascades on a lattice. |
-| 22 | [Physarum Transport Networks](physarum/index.html) | Multi-agent slime mold transport network formation. |
-| 23 | [Reaction-Diffusion](reaction-diffusion/index.html) | Gray-Scott morphogenesis with user-deformed local dynamics. |
+| 09 | [Cyclic Cellular Automata](cyclic-ca/index.html) | Spiral waves from cyclic N-species local replacement rules. |
+| 10 | [Langton's Self-Reproducing Loops](langton-loops/index.html) | Rule-based self-replication in an 8-state CA. |
+| 11 | Neural Particle Automata | Planned demo ranking target. |
+| 12 | [Multiple Neighborhood Cellular Automata](mnca/index.html) | Rich CA behavior from concentric neighborhood rules. |
+| 13 | [Competitive Multi-Seed Growth](multi-seed-growth/index.html) | Multi-origin Eden/percolation growth and fractal boundaries. |
+| 14 | [Dielectric Breakdown Model](dielectric-breakdown/index.html) | Lightning-like fractals from Laplacian growth with eta control. |
+| 15 | [Multi-Scale Turing Patterns](turing-patterns/index.html) | Pattern formation from competing activator-inhibitor scales. |
+| 16 | [Particle Life](particle-life/index.html) | Ecosystem-like structures from a pairwise interaction matrix. |
+| 17 | [Diffusion-Limited Aggregation](dla/index.html) | Fractal branching from random-walker accretion. |
+| 18 | [Turmites](turmites/index.html) | 2D Turing-machine-like agents generating highways and spirals. |
+| 19 | [DiffLogic Cellular Automata](difflogic-ca/index.html) | Reverse-engineering CA rules with a browser-native differentiable-logic-inspired workflow. |
+| 20 | [Abelian Sandpile](sandpile/index.html) | Self-organized criticality and avalanche cascades on a lattice. |
+| 21 | [Physarum Transport Networks](physarum/index.html) | Multi-agent slime mold transport network formation. |
+| 22 | [Reaction-Diffusion](reaction-diffusion/index.html) | Gray-Scott morphogenesis with user-deformed local dynamics. |
 
 ## Device support
 
