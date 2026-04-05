@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Primordial Particle Systems . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=8">
+    <script src="../device-gate.js?v=1" defer></script>
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Primordial Particle Systems</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div><h4>Origin</h4><p><a href="https://www.nature.com/articles/srep37969" target="_blank">Schmickl et al., How a life-like system emerges from a simple particle motion law, Scientific Reports, 2016</a>. <a href="https://github.com/nagualdesign/Primordial-Particle-System" target="_blank">nagualdesign implementation</a>. One equation produces cell membranes, mitosis, and entire ecosystems.</p></div>
+                <div><h4>How It Works</h4><p>Each particle has position, heading, and constant velocity. Count neighbors within radius r to the left and right. Turn by alpha + beta * N * sign(R - L). Move forward by v. That single equation produces emergent cells with life cycles.</p></div>
+                <div><h4>Applications</h4><p>Artificial life research, emergent self-organization from minimal rules. Simpler than Boids yet produces cell membranes, mitosis, spore formation, and death.</p></div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="smooth"></canvas>
+        </div>
+        <div class="usage">Adjust <span class="key">alpha</span> <span class="sep">·</span> <span class="key">beta</span> to explore different behaviors. <span class="key">Random</span> for new particle arrangement.</div>
+        <div class="controls">Sliders for <span class="key">alpha</span> (100 to 360, default 180), <span class="key">beta</span> (1 to 40, default 17), <span class="key">speed v</span>, <span class="key">radius r</span>. Buttons <span class="key">random</span>, <span class="key">reset</span>.</div>
+    </div>
+    <script src="sim.js?v=8"></script>
+</body>
+</html>

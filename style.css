@@ -76,6 +76,27 @@ a:hover {
     text-align: center;
 }
 
+.device-lock-banner {
+    max-width: 780px;
+    margin: 1.25rem auto -1rem auto;
+    padding: 0.85rem 1rem;
+    border: 1px solid #5a2d2d;
+    background: rgba(110, 40, 40, 0.16);
+    color: #f0d6d6;
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.device-lock-banner strong {
+    display: inline-block;
+    margin-right: 0.35rem;
+    font-family: var(--font-headline);
+    letter-spacing: 0.01em;
+    color: #ffd9d9;
+}
+
 .demo-grid {
     display: flex;
     flex-wrap: wrap;
@@ -99,6 +120,17 @@ a:hover {
 
 .demo-card:hover {
     opacity: 0.7;
+}
+
+body.mobile-locked .demo-card {
+    opacity: 0.36;
+    filter: grayscale(1) saturate(0.3);
+    pointer-events: none;
+}
+
+body.mobile-locked .demo-card .card-title,
+body.mobile-locked .demo-card .card-desc {
+    color: #727272;
 }
 
 .demo-preview {

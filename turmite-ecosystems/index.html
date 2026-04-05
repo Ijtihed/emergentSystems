@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Turmite Ecosystems . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=8">
+    <script src="../device-gate.js?v=1" defer></script>
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Turmite Ecosystems</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div><h4>Origin</h4><p>Extension of <a href="https://en.wikipedia.org/wiki/Langton%27s_ant" target="_blank">Langton's Ant</a> and <a href="https://mathpuzzle.com/MAA/21-2D%20Turing%20Machines/mathgames_06_07_04.html" target="_blank">Ed Pegg's turmite survey</a>. Multiple ants with different rule tables sharing one grid. The multi-ant interaction space is essentially unmapped.</p></div>
+                <div><h4>How It Works</h4><p>Define 2 to 3 turmite species, each with its own state transition table. Drop colonies of each on the grid. One species builds highways, another builds spirals. Where territories collide you get interference patterns.</p></div>
+                <div><h4>Applications</h4><p>Emergent territory formation, higher-order automata from simple agents, visual exploration of unmapped multi-agent parameter space.</p></div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">Select a species and <span class="key">click</span> to place a colony. Watch territories collide and produce interference patterns.</div>
+        <div class="controls">Presets per species A, B, C include <span class="key">langton</span>, <span class="key">highway</span>, <span class="key">spiral</span>, <span class="key">chaotic</span>. Click mode <span class="key">place A</span>, <span class="key">place B</span>, <span class="key">place C</span>. <span class="key">Speed</span> slider, <span class="key">reset</span>.</div>
+    </div>
+    <script src="sim.js?v=8"></script>
+</body>
+</html>

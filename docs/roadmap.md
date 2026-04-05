@@ -1,6 +1,6 @@
 # Roadmap — Future Projects
 
-Curated list of additional emergent systems worth building as interactive web demos.
+Curated list of additional emergent systems where the opportunity is clear: either no serious interactive implementation exists, or existing implementations are too limited to explore the ideas properly.
 
 ---
 
@@ -11,7 +11,7 @@ Systems where life-like behavior emerges from a trivial particle motion law. Eac
 
 - **Interactive angle**: Sliders for the turning rule parameters. Watch how slight changes cause phase transitions from gas → clustering → cell division → coordinated motility.
 - **Implementation**: Agent-based, similar to Physarum but with angular momentum rules. ~5000 particles, Canvas 2D.
-- **Status**: Published academically, no polished web version exists.
+- **Status**: Published academically, but still lacks a polished, high-control web implementation.
 - **References**:
   - Schmickl et al., "How life-like behavior emerges from a simple particle motion law"
   - Related: swarm chemistry (Sayama)
@@ -27,7 +27,7 @@ Rules discovered so far exhibit spaceships, guns, oscillators, and even structur
 
 - **Interactive angle**: Let users define aesthetic preferences via sliders (symmetry, motion, color diversity, edge density) and watch the GA evolve beautiful CA rules in real-time. A "breeding" interface where users pick favorites from a grid.
 - **Implementation**: Continuous CA on ~256×256 grid, population of rules, real-time fitness evaluation. WebGL recommended for rendering.
-- **Status**: Basic web version exists at mergelife.org but is bare-bones. Opportunity for a much richer experience.
+- **Status**: A basic web version exists at mergelife.org, but it is still shallow compared to the full creative/search space. Strong opportunity for a richer, more exploratory build.
 - **References**:
   - Heaton, "Evolving continuous cellular automata for aesthetic objectives"
   - mergelife.org
@@ -44,7 +44,7 @@ The 2025 extension demonstrates universal computation within NCA — the same ar
 
 - **Interactive angle**: Upload any image, train an NCA on the fly (or use a pre-trained set), and interact by "damaging" the pattern and watching it regenerate. The 2025 universal computation extension opens possibilities for NCA that compute — e.g., an NCA that sorts colors or implements a counter.
 - **Implementation**: Requires WebGL for the neural network forward pass per cell. Pre-trained models can be exported as weight tensors and run in a fragment shader.
-- **Status**: Famous Distill article exists with limited interactivity. Full user-facing tool with upload + train + damage would be novel.
+- **Status**: Famous Distill article exists, but interactive depth remains limited. A full user-facing tool with upload + train + damage would still be meaningfully novel.
 - **References**:
   - Mordvintsev et al., "Growing Neural Cellular Automata" (Distill, 2020)
   - arxiv.org/html/2505.13058v1 — Universal computation in NCA (2025)

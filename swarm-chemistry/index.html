@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Swarm Chemistry . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=8">
+    <script src="../device-gate.js?v=1" defer></script>
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Swarm Chemistry</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div><h4>Origin</h4><p><a href="https://direct.mit.edu/artl/article-abstract/15/1/105/2623/Swarm-Chemistry" target="_blank">Hiroki Sayama, Swarm Chemistry, Artificial Life 15(1), 2009</a>. Won ISAL Outstanding Paper of the Decade award. <a href="http://bingweb.binghamton.edu/~sayama/SwarmChemistry/" target="_blank">Sayama's page</a>.</p></div>
+                <div><h4>How It Works</h4><p>Multiple species of Boids-like particles, each with its own separation, alignment, cohesion, max speed, and perception radius. Particles interact across species, producing orbiting rings, pulsing blobs, and cell-like membranes. Breed favorites to discover new lifeforms.</p></div>
+                <div><h4>Applications</h4><p>Artificial life and morphogenesis research. Interactive evolutionary computation for discovering self-organizing swarm patterns.</p></div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="smooth"></canvas>
+        </div>
+        <div class="usage"><span class="key">Random</span> generates new species parameters. <span class="key">Breed</span> mixes two random species into a new one. <span class="key">Click</span> to attract particles.</div>
+        <div class="controls"><span class="key">Species count</span> (2 to 5, default 3). Buttons <span class="key">breed</span>, <span class="key">random</span>, <span class="key">reset</span>. <span class="key">Friction</span> slider.</div>
+    </div>
+    <script src="sim.js?v=8"></script>
+</body>
+</html>

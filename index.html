@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>emergent systems</title>
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
     <main class="landing">
@@ -16,12 +16,27 @@
             <a href="particle-life/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="particle" width="72" height="72"></canvas>
                 <div class="card-title">Particle Life</div>
-                <div class="card-desc">Emergent ecosystems from a simple force matrix.</div>
+                <div class="card-desc">Emergent ecosystems from a force matrix.</div>
+            </a>
+            <a href="turmite-ecosystems/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="turmiteeco" width="72" height="72"></canvas>
+                <div class="card-title">Turmite Ecosystems</div>
+                <div class="card-desc">Multi-species territory wars on a pixel grid.</div>
+            </a>
+            <a href="primordial-particles/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="pps" width="72" height="72"></canvas>
+                <div class="card-title">Primordial Particles</div>
+                <div class="card-desc">Cell membranes and mitosis from one equation.</div>
+            </a>
+            <a href="swarm-chemistry/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="swarm" width="72" height="72"></canvas>
+                <div class="card-title">Swarm Chemistry</div>
+                <div class="card-desc">Breed alien lifeforms via evolution.</div>
             </a>
             <a href="turmites/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="turmite" width="72" height="72"></canvas>
                 <div class="card-title">Turmites</div>
-                <div class="card-desc">2D Turing machines that build highways and spirals.</div>
+                <div class="card-desc">2D Turing machines building highways and spirals.</div>
             </a>
             <a href="mnca/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="mnca" width="72" height="72"></canvas>
@@ -31,12 +46,22 @@
             <a href="turing-patterns/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="turing" width="72" height="72"></canvas>
                 <div class="card-title">Multi-Scale Turing</div>
-                <div class="card-desc">Alien surfaces from competing activator-inhibitor scales.</div>
+                <div class="card-desc">Alien surfaces from activator-inhibitor scales.</div>
+            </a>
+            <a href="paterson-worms/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="worms" width="72" height="72"></canvas>
+                <div class="card-title">Paterson's Worms</div>
+                <div class="card-desc">Hexagonal snowflakes on a triangular lattice.</div>
+            </a>
+            <a href="dla/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="dla" width="72" height="72"></canvas>
+                <div class="card-title">DLA</div>
+                <div class="card-desc">Lightning and frost fractals from random walkers.</div>
             </a>
             <a href="physarum/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="physarum" width="72" height="72"></canvas>
                 <div class="card-title">Physarum</div>
-                <div class="card-desc">Collaborative drawing with slime mold agents.</div>
+                <div class="card-desc">Slime mold transport networks.</div>
             </a>
             <a href="sandpile/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="sandpile" width="72" height="72"></canvas>
@@ -46,12 +71,12 @@
             <a href="reaction-diffusion/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="rd" width="72" height="72"></canvas>
                 <div class="card-title">Reaction-Diffusion</div>
-                <div class="card-desc">Gray-Scott with spatial painting and deformable surface.</div>
+                <div class="card-desc">Gray-Scott with spatial painting.</div>
             </a>
             <a href="difflogic-ca/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="difflogic" width="72" height="72"></canvas>
                 <div class="card-title">DiffLogic CA</div>
-                <div class="card-desc">Draw patterns, evolve rules, watch them self-organize.</div>
+                <div class="card-desc">Draw patterns, evolve rules.</div>
             </a>
         </div>
 
@@ -71,65 +96,51 @@
             const px = img.data;
             const sim = c.dataset.sim;
 
-            if (sim === 'particle') {
+            if (sim === 'particle' || sim === 'swarm') {
                 ctx.fillStyle = '#080808'; ctx.fillRect(0, 0, S, S);
                 const cols = [[90,160,240],[230,90,80],[80,210,140],[220,180,60]];
                 for (let t = 0; t < 4; t++) {
                     const cx = 18 + Math.random() * 36, cy = 18 + Math.random() * 36;
-                    for (let i = 0; i < 30; i++) {
+                    for (let i = 0; i < 25; i++) {
                         const x = cx + (Math.random()-0.5)*20, y = cy + (Math.random()-0.5)*20;
                         ctx.fillStyle = `rgb(${cols[t]})`;
                         ctx.fillRect(x, y, 2, 2);
                     }
                 }
-            } else if (sim === 'turmite') {
+            } else if (sim === 'turmite' || sim === 'turmiteeco') {
                 const g = new Uint8Array(S*S);
                 let x=S/2|0, y=S/2|0, d=0;
                 const dx=[0,1,0,-1], dy=[-1,0,1,0];
-                for(let i=0;i<4000;i++){
-                    const idx=y*S+x;
-                    if(g[idx]){d=(d+3)%4;g[idx]=0;}else{d=(d+1)%4;g[idx]=1;}
-                    x=(x+dx[d]+S)%S;y=(y+dy[d]+S)%S;
-                }
+                for(let i=0;i<4000;i++){const idx=y*S+x;if(g[idx]){d=(d+3)%4;g[idx]=0;}else{d=(d+1)%4;g[idx]=1;}x=(x+dx[d]+S)%S;y=(y+dy[d]+S)%S;}
                 for(let i=0;i<S*S;i++){const v=g[i]?200:8;px[i*4]=v*0.75;px[i*4+1]=v*0.85;px[i*4+2]=v;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
             } else if (sim === 'mnca') {
                 for(let i=0;i<S*S;i++){const v=Math.random()<0.4?1:0;const b=v*200;px[i*4]=b*0.7;px[i*4+1]=b*0.8;px[i*4+2]=b;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
-                ctx.filter='blur(1px)';ctx.drawImage(c,0,0);ctx.filter='none';
             } else if (sim === 'turing') {
                 for(let i=0;i<S*S;i++){const v=(Math.sin(i*0.3)*Math.cos(i*0.07)+1)*0.5;px[i*4]=v*v*200|0;px[i*4+1]=v*210|0;px[i*4+2]=v*230|0;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
-            } else if (sim === 'physarum') {
+            } else if (sim === 'physarum' || sim === 'pps') {
                 ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
-                for(let i=0;i<80;i++){
-                    const a=Math.random()*Math.PI*2,r=5+Math.random()*25;
-                    const x=S/2+Math.cos(a)*r,y=S/2+Math.sin(a)*r;
-                    ctx.fillStyle=`rgba(140,190,220,${0.3+Math.random()*0.4})`;
-                    ctx.fillRect(x,y,2,2);
-                }
+                const col = sim==='pps'?'rgba(100,200,100,':'rgba(140,190,220,';
+                for(let i=0;i<80;i++){const a=Math.random()*Math.PI*2,r=5+Math.random()*25;ctx.fillStyle=col+(0.3+Math.random()*0.4)+')';ctx.fillRect(S/2+Math.cos(a)*r,S/2+Math.sin(a)*r,2,2);}
             } else if (sim === 'sandpile') {
-                const cx=S/2,cy=S/2;
-                const cols=[[8,8,8],[40,70,120],[70,130,180],[140,190,220]];
-                for(let i=0;i<S*S;i++){
-                    const x=i%S,y=i/S|0;const d=Math.sqrt((x-cx)**2+(y-cy)**2);
-                    const v=d<30?Math.min(3,(3-d/10)|0):0;const c=cols[v];
-                    px[i*4]=c[0];px[i*4+1]=c[1];px[i*4+2]=c[2];px[i*4+3]=255;
-                }
+                const cx=S/2,cy=S/2;const cols=[[8,8,8],[40,70,120],[70,130,180],[140,190,220]];
+                for(let i=0;i<S*S;i++){const x=i%S,y=i/S|0;const d=Math.sqrt((x-cx)**2+(y-cy)**2);const v=d<30?Math.min(3,(3-d/10)|0):0;const c=cols[v];px[i*4]=c[0];px[i*4+1]=c[1];px[i*4+2]=c[2];px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
             } else if (sim === 'rd') {
-                for(let i=0;i<S*S;i++){
-                    const x=i%S,y=i/S|0;
-                    const v=Math.sin(x*0.2)*Math.sin(y*0.2)*0.5+0.5;
-                    px[i*4]=v*160|0;px[i*4+1]=v*175|0;px[i*4+2]=v*220|0;px[i*4+3]=255;
-                }
+                for(let i=0;i<S*S;i++){const x=i%S,y=i/S|0;const v=Math.sin(x*0.2)*Math.sin(y*0.2)*0.5+0.5;px[i*4]=v*160|0;px[i*4+1]=v*175|0;px[i*4+2]=v*220|0;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
+            } else if (sim === 'worms') {
+                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
+                ctx.strokeStyle='rgba(140,190,220,0.6)';ctx.lineWidth=1;
+                let x=S/2,y=S/2;for(let i=0;i<60;i++){const a=((i*1.2)%6)*Math.PI/3;const nx=x+Math.cos(a)*4,ny=y+Math.sin(a)*4;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(nx,ny);ctx.stroke();x=nx;y=ny;}
+            } else if (sim === 'dla') {
+                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
+                function branch(x,y,a,d){if(d<1)return;ctx.fillStyle=`rgba(140,190,220,${d/12})`;ctx.fillRect(x,y,1,1);const len=2+Math.random()*3;branch(x+Math.cos(a)*len,y+Math.sin(a)*len,a+(Math.random()-0.5)*1.2,d-1);if(Math.random()<0.3)branch(x+Math.cos(a)*len,y+Math.sin(a)*len,a+(Math.random()-0.5)*2,d-2);}
+                for(let i=0;i<5;i++)branch(S/2,S/2,Math.random()*Math.PI*2,10);
             } else if (sim === 'difflogic') {
-                for(let i=0;i<S*S;i++){
-                    const x=i%S,y=i/S|0;
-                    const v=((x+y)%8<4)?1:0;const b=v?180:15;
-                    px[i*4]=b*0.55;px[i*4+1]=b*0.6;px[i*4+2]=b*0.72;px[i*4+3]=255;
-                }
+                for(let i=0;i<S*S;i++){const x=i%S,y=i/S|0;const v=((x+y)%8<4)?1:0;const b=v?180:15;px[i*4]=b*0.55;px[i*4+1]=b*0.6;px[i*4+2]=b*0.72;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
             }
         });
