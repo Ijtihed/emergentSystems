@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check all HTML files are valid
+        run: |
+          echo "Checking for broken script/CSS references..."
+          errors=0
+          for html in $(find . -name "*.html" -not -path "./.git/*"); do
+            # Check that referenced JS files exist
+            for js in $(grep -oP 'src="([^"?]+)' "$html" | sed 's/src="//'); do
+              dir=$(dirname "$html")
+              target="$dir/$js"
+              if [ ! -f "$target" ] && [ "$js" != "https://"* ]; then
+                echo "MISSING: $html references $js (expected at $target)"
+                errors=$((errors + 1))
+              fi
+            done
+          done
+          if [ $errors -gt 0 ]; then
+            echo "$errors broken references found"
+            exit 1
+          fi
+          echo "All references valid"
+
+      - name: Check all demo folders have index.html and sim.js
+        run: |
+          errors=0
+          for dir in */; do
+            if [ -f "$dir/sim.js" ] && [ ! -f "$dir/index.html" ]; then
+              echo "MISSING: $dir has sim.js but no index.html"
+              errors=$((errors + 1))
+            fi
+            if [ -f "$dir/index.html" ] && [ "$dir" != "./" ] && grep -q "sim.js" "$dir/index.html" && [ ! -f "$dir/sim.js" ]; then
+              echo "MISSING: $dir/index.html references sim.js but file is missing"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "$errors integrity errors found"
+            exit 1
+          fi
+          echo "All demo folders intact"
+
+      - name: Check no secrets or IDE files committed
+        run: |
+          errors=0
+          for pattern in ".env" ".vscode" ".cursor" "node_modules"; do
+            if find . -path "./.git" -prune -o -name "$pattern" -print | grep -q .; then
+              echo "FOUND: $pattern should not be committed"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            exit 1
+          fi
+          echo "No secrets or IDE files found"
+
+      - name: Count demos
+        run: |
+          count=$(find . -maxdepth 2 -name "sim.js" -not -path "./.git/*" | wc -l)
+          echo "$count demos found"

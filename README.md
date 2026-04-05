@@ -13,7 +13,7 @@
 
 <br />
 
-<img src="public/screenshot.png" alt="emergent systems landing page" width="1080" />
+<img src="assets/screenshot.png" alt="emergent systems landing page" width="1080" />
 
 </div>
 
