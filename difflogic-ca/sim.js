@@ -125,43 +125,47 @@
         return cur;
     }
 
+    function countMatch(a, b) {
+        let m = 0;
+        for (let i = 0; i < a.length; i++) if (a[i] === b[i]) m++;
+        return m / a.length;
+    }
+
     function fitness(rule) {
-        let totalScore = 0;
-        const trials = 3;
-        for (let t = 0; t < trials; t++) {
-            const init = new Uint8Array(GRID * GRID);
-            for (let i = 0; i < init.length; i++) init[i] = Math.random() < 0.4 ? 1 : 0;
-            const result = runCA(init, rule, 30 + t * 10);
+        const N = GRID * GRID;
 
-            let match = 0;
-            const targetAlive = target.reduce((a, b) => a + b, 0);
-            const resultAlive = result.reduce((a, b) => a + b, 0);
+        // Test 1: is the target a stable state under this rule?
+        const after1 = runCA(target, rule, 1);
+        const after3 = runCA(target, rule, 3);
+        const stability1 = countMatch(after1, target);
+        const stability3 = countMatch(after3, target);
 
-            for (let i = 0; i < GRID * GRID; i++) {
-                if (result[i] === target[i]) match++;
-            }
-            const cellMatch = match / (GRID * GRID);
-            const densityMatch = 1 - Math.abs(targetAlive - resultAlive) / (GRID * GRID);
-
-            let patternScore = 0;
-            for (let y = 1; y < GRID - 1; y++) {
-                for (let x = 1; x < GRID - 1; x++) {
-                    const tLocal = target[(y-1)*GRID+x] + target[(y+1)*GRID+x] +
-                                   target[y*GRID+x-1] + target[y*GRID+x+1];
-                    const rLocal = result[(y-1)*GRID+x] + result[(y+1)*GRID+x] +
-                                   result[y*GRID+x-1] + result[y*GRID+x+1];
-                    if (Math.abs(tLocal - rLocal) <= 1) patternScore++;
-                }
-            }
-            patternScore /= ((GRID - 2) * (GRID - 2));
-
-            totalScore += cellMatch * 0.4 + densityMatch * 0.3 + patternScore * 0.3;
+        // Test 2: can the rule repair a noisy version of the target?
+        const noisy = new Uint8Array(target);
+        for (let i = 0; i < N; i++) {
+            if (Math.random() < 0.15) noisy[i] = 1 - noisy[i];
         }
-        return totalScore / trials;
+        const repaired = runCA(noisy, rule, 5);
+        const repairScore = countMatch(repaired, target);
+
+        // Test 3: from a random start, does density and local structure match?
+        const tAlive = target.reduce((a, b) => a + b, 0);
+        const tDensity = tAlive / N;
+        const rnd = randomInit(tDensity);
+        const fromRnd = runCA(rnd, rule, 25);
+        const rAlive = fromRnd.reduce((a, b) => a + b, 0);
+        const densityScore = 1 - Math.abs(tAlive - rAlive) / N;
+
+        // Penalize rules that kill everything or fill everything
+        const rDensity = rAlive / N;
+        const deadOrFull = (rDensity < 0.02 || rDensity > 0.98) ? 0.5 : 1.0;
+
+        return (stability1 * 0.3 + stability3 * 0.2 + repairScore * 0.3 +
+                densityScore * 0.2) * deadOrFull;
     }
 
     // Genetic algorithm state
-    const POP_SIZE = 40;
+    const POP_SIZE = 60;
     let population = [];
     let fitnesses = [];
     let bestFitness = 0;
@@ -169,6 +173,10 @@
 
     function initGA() {
         population = Array.from({ length: POP_SIZE }, () => Rule.random());
+        // Seed with known interesting rules
+        population[0] = new Rule(new Uint8Array([0,0,0,1,0,0,0,0,0, 0,0,1,1,0,0,0,0,0])); // B3/S23 (Life)
+        population[1] = new Rule(new Uint8Array([0,0,0,1,0,0,0,0,0, 0,0,1,0,0,0,0,0,0])); // B3/S2
+        population[2] = new Rule(new Uint8Array([0,0,0,1,1,0,0,0,0, 0,0,0,1,1,0,0,0,0])); // B34/S34
         fitnesses = new Float32Array(POP_SIZE);
         bestFitness = 0;
         bestRule = null;
@@ -184,7 +192,10 @@
             }
         }
 
-        const newPop = [bestRule.clone()];
+        const sorted = [...population.keys()].sort((a, b) => fitnesses[b] - fitnesses[a]);
+        const newPop = [];
+        // Keep top 3
+        for (let i = 0; i < 3; i++) newPop.push(population[sorted[i]].clone());
 
         while (newPop.length < POP_SIZE) {
             const a = (Math.random() * POP_SIZE) | 0;
@@ -200,7 +211,7 @@
             } else {
                 child = parentA.clone();
             }
-            child = child.mutate(0.08);
+            child = child.mutate(genCount < 30 ? 0.12 : 0.05);
             newPop.push(child);
         }
         population = newPop;
@@ -228,11 +239,15 @@
         initGA();
         statusEl.textContent = 'learning...';
 
-        for (let epoch = 0; epoch < 80; epoch++) {
+        for (let epoch = 0; epoch < 120; epoch++) {
             evolveStep();
             statusEl.textContent = `gen ${genCount} · fitness ${(bestFitness * 100).toFixed(1)}%`;
             if (bestRule) {
-                const demo = runCA(randomInit(0.4), bestRule, 40);
+                const noisy = new Uint8Array(target);
+                for (let i = 0; i < GRID * GRID; i++) {
+                    if (Math.random() < 0.12) noisy[i] = 1 - noisy[i];
+                }
+                const demo = runCA(noisy, bestRule, 4);
                 renderGrid(runCtx, demo, CELL_RUN);
             }
             await new Promise(r => setTimeout(r, 0));
@@ -261,7 +276,10 @@
         }
         learning = false;
         running = true;
-        grid = randomInit(0.4);
+        grid = new Uint8Array(target);
+        for (let i = 0; i < grid.length; i++) {
+            if (Math.random() < 0.2) grid[i] = 1 - grid[i];
+        }
         generation = 0;
         animate();
     }
