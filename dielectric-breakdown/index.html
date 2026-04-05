@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>dielectric breakdown . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=9">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Dielectric Breakdown Model</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div><h4>Origin</h4><p><a href="https://paulbourke.net/fractals/lichtenberg/" target="_blank">Niemeyer, Pietronero, Wiesmann, 1984</a>. Fractal Dimension of Dielectric Breakdown, Phys. Rev. Lett. 52. The eta parameter controls morphology from DLA-like branches to straight needles, traversing an entire spectrum with one slider.</p></div>
+                <div><h4>How It Works</h4><p>A conductor seed sits at the center, a charged boundary surrounds it. The electric potential is solved iteratively via Laplace relaxation. Boundary pixels join the conductor with probability proportional to the local electric field raised to power eta. Re-solve and repeat.</p></div>
+                <div><h4>Applications</h4><p>Models lightning paths, Lichtenberg figures, frost formation, river deltas, mineral dendrites. At eta=1 you get branchy DLA trees, at high eta you get straight needles, intermediate values produce the most beautiful lightning fractals.</p></div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            <span class="key">click</span> to place conductor seeds<span class="sep">·</span><span class="key">eta</span> controls branch bushiness<span class="sep">·</span><span class="key">steps</span> controls growth per frame
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>eta</label>
+                <input type="range" id="eta" min="5" max="40" value="15">
+                <span class="val" id="etaVal">1.5</span>
+            </div>
+            <div class="ctrl">
+                <label>steps</label>
+                <input type="range" id="steps" min="1" max="10" value="3">
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">growing</span>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=9"></script>
+</body>
+</html>

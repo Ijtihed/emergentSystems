@@ -63,6 +63,31 @@
                 <div class="card-title">Turmites</div>
                 <div class="card-desc">2D Turing machines building highways and spirals.</div>
             </a>
+            <a href="cyclic-ca/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="cyclic" width="72" height="72"></canvas>
+                <div class="card-title">Cyclic CA</div>
+                <div class="card-desc">Psychedelic spiral wars from N-species cycles.</div>
+            </a>
+            <a href="flocking/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="flock" width="72" height="72"></canvas>
+                <div class="card-title">Non-Reciprocal Flocking</div>
+                <div class="card-desc">Run-and-chase dynamics from asymmetric alignment.</div>
+            </a>
+            <a href="dielectric-breakdown/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="dbm" width="72" height="72"></canvas>
+                <div class="card-title">Dielectric Breakdown</div>
+                <div class="card-desc">Lightning fractals from electric field growth.</div>
+            </a>
+            <a href="langton-loops/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="loops" width="72" height="72"></canvas>
+                <div class="card-title">Langton's Loops</div>
+                <div class="card-desc">Self-reproducing pixel organisms.</div>
+            </a>
+            <a href="multi-seed-growth/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="growth" width="72" height="72"></canvas>
+                <div class="card-title">Multi-Seed Growth</div>
+                <div class="card-desc">Competing crystals with fractal borders.</div>
+            </a>
         </div>
 
         <div class="landing-footer">
@@ -116,6 +141,28 @@
                 ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
                 function branch(x,y,a,d){if(d<1)return;ctx.fillStyle=`rgba(140,190,220,${d/12})`;ctx.fillRect(x,y,1,1);const len=2+Math.random()*3;branch(x+Math.cos(a)*len,y+Math.sin(a)*len,a+(Math.random()-0.5)*1.2,d-1);if(Math.random()<0.3)branch(x+Math.cos(a)*len,y+Math.sin(a)*len,a+(Math.random()-0.5)*2,d-2);}
                 for(let i=0;i<5;i++)branch(S/2,S/2,Math.random()*Math.PI*2,10);
+            } else if (sim === 'cyclic') {
+                for(let i=0;i<S*S;i++){const v=((Math.random()*14)|0);const h=(v/14)*360;px[i*4]=128+127*Math.cos(h*Math.PI/180)|0;px[i*4+1]=128+127*Math.cos((h-120)*Math.PI/180)|0;px[i*4+2]=128+127*Math.cos((h-240)*Math.PI/180)|0;px[i*4+3]=255;}
+                ctx.putImageData(img,0,0);
+            } else if (sim === 'flock') {
+                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
+                for(let i=0;i<60;i++){ctx.fillStyle=i<30?'rgba(90,160,240,0.6)':'rgba(230,100,80,0.6)';ctx.fillRect(i<30?10+Math.random()*25:35+Math.random()*25,Math.random()*S,2,2);}
+            } else if (sim === 'dbm') {
+                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
+                function br2(x,y,a,d){if(d<1)return;ctx.fillStyle=`rgba(100,160,210,${d/10})`;ctx.fillRect(x,y,1,1);br2(x+Math.cos(a)*2,y+Math.sin(a)*2,a+(Math.random()-0.5),d-1);if(Math.random()<0.35)br2(x,y,a+(Math.random()-0.5)*2,d-2);}
+                for(let i=0;i<4;i++)br2(S/2,S/2,Math.random()*Math.PI*2,9);
+            } else if (sim === 'loops') {
+                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
+                ctx.strokeStyle='#c04040';ctx.lineWidth=2;ctx.strokeRect(S/2-8,S/2-8,16,16);
+                ctx.fillStyle='#2850a0';ctx.fillRect(S/2-6,S/2-6,12,12);
+                ctx.fillStyle='#3cb43c';ctx.fillRect(S/2-2,S/2-6,2,12);
+            } else if (sim === 'growth') {
+                const seeds=[[20,20],[50,40],[35,55]];const cols2=[[90,160,240],[230,100,80],[80,210,140]];
+                for(let i=0;i<S*S;i++){const x=i%S,y=(i/S)|0;let best=0,bestD=999;for(let s2=0;s2<3;s2++){const d=Math.sqrt((x-seeds[s2][0])**2+(y-seeds[s2][1])**2);if(d<bestD){bestD=d;best=s2;}}const c=cols2[best];const f=Math.max(0,1-bestD/40);px[i*4]=c[0]*f|0;px[i*4+1]=c[1]*f|0;px[i*4+2]=c[2]*f|0;px[i*4+3]=255;}
+                ctx.putImageData(img,0,0);
+            } else if (sim === 'difflogic') {
+                for(let i=0;i<S*S;i++){const x=i%S,y=(i/S)|0;const v=((x+y)%8<4)?1:0;const b=v?180:15;px[i*4]=b*0.55;px[i*4+1]=b*0.6;px[i*4+2]=b*0.72;px[i*4+3]=255;}
+                ctx.putImageData(img,0,0);
             }
         });
     })();

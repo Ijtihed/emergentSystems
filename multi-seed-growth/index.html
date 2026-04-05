@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>multi-seed growth . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=9">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Competitive Multi-Seed Growth</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div><h4>Origin</h4><p><a href="https://en.wikipedia.org/wiki/Eden_growth_model" target="_blank">Eden, 1961</a> for Eden growth. <a href="https://en.wikipedia.org/wiki/Invasion_percolation" target="_blank">Wilkinson and Willemsen, 1983</a> for invasion percolation. Multiple colored seeds race to claim territory, creating fractal-edged Voronoi-like boundaries where growth fronts collide.</p></div>
+                <div><h4>How It Works</h4><p>Eden growth picks a random boundary pixel to fill each step. Invasion percolation assigns random resistance to each pixel and grows into the lowest-resistance neighbor, creating drainage basin patterns. Multiple seeds compete for unclaimed space.</p></div>
+                <div><h4>Applications</h4><p>Models crystal growth, tumor growth, drainage basins, territorial expansion, and Voronoi tessellation with fractal boundaries. The competition between seeds creates the most visually interesting dynamics.</p></div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            <span class="key">click</span> to place colored seeds<span class="sep">·</span>choose <span class="key">model</span> for different growth dynamics<span class="sep">·</span><span class="key">speed</span> controls growth rate
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>model</label>
+                <select id="model">
+                    <option value="eden" selected>eden growth</option>
+                    <option value="invasion">invasion percolation</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label>speed</label>
+                <input type="range" id="speed" min="1" max="100" value="20">
+            </div>
+            <div class="ctrl">
+                <button id="scatterBtn">scatter seeds</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">click to place seeds</span>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>flocking . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=9">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Non-Reciprocal Flocking</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div><h4>Origin</h4><p><a href="https://www.nature.com/articles/s42005-025-02098-x" target="_blank">Chatterjee et al., Emergent complex phases in a discrete flocking model, Communications Physics, 2025</a>. Two species of self-propelled particles with non-reciprocal interactions produce run-and-chase dynamics, traveling bands, and metastable droplets.</p></div>
+                <div><h4>How It Works</h4><p>Particles on a grid align their heading with neighbors. Species A aligns with B, but B anti-aligns with A. This non-reciprocity creates chasing dynamics. Each particle has a heading that biases its random walk, and aligns with local majority via a discrete Ising-like rule.</p></div>
+                <div><h4>Applications</h4><p>Models active matter with non-reciprocal coupling, predator-prey dynamics, motility-induced phase separation. Shows phases not seen in standard Vicsek flocking, including spontaneous interface pinning and traveling excitations.</p></div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            <span class="key">coupling</span> controls non-reciprocity strength<span class="sep">·</span><span class="key">noise</span> adds randomness to alignment<span class="sep">·</span><span class="key">density</span> controls particle count
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>coupling</label>
+                <input type="range" id="coupling" min="-100" max="100" value="-60">
+            </div>
+            <div class="ctrl">
+                <label>noise</label>
+                <input type="range" id="noise" min="0" max="100" value="20">
+            </div>
+            <div class="ctrl">
+                <label>density</label>
+                <input type="range" id="density" min="10" max="80" value="40">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=9"></script>
+</body>
+</html>

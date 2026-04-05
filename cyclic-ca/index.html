@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>cyclic ca . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=9">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Cyclic Cellular Automata</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div><h4>Origin</h4><p><a href="https://nathaniel.ai/greenberg-hastings/" target="_blank">Greenberg and Hastings, 1978</a>. <a href="https://www.sciencedirect.com/science/article/pii/016727899190160A" target="_blank">Fisch, Gravner, Griffeath, 1991</a> analyzed the phase diagram. N-species rock-paper-scissors on a grid. With 14+ colors, mesmerizing spiral galaxies self-organize from random noise.</p></div>
+                <div><h4>How It Works</h4><p>N colors on a wheel. Each pixel can only be eaten by the next color in the cycle. If a pixel sees enough neighbors of its successor color within its neighborhood, it advances. Greenberg-Hastings variant has only one color advance by contact, the rest auto-advance through a refractory period.</p></div>
+                <div><h4>Applications</h4><p>Models excitable media, cardiac arrhythmia spiral waves, chemical oscillations like the BZ reaction. Spiral form follows neighborhood shape, diamond neighborhoods make diamond spirals.</p></div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            adjust <span class="key">colors</span> for spiral complexity<span class="sep">·</span><span class="key">threshold</span> controls how many neighbors trigger advancement<span class="sep">·</span>toggle <span class="key">GH mode</span> for Greenberg-Hastings variant
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>colors</label>
+                <input type="range" id="numColors" min="3" max="24" value="14">
+                <span class="val" id="numColorsVal">14</span>
+            </div>
+            <div class="ctrl">
+                <label>threshold</label>
+                <input type="range" id="threshold" min="1" max="5" value="1">
+            </div>
+            <div class="ctrl">
+                <label>neighborhood</label>
+                <select id="neighborhood">
+                    <option value="moore">moore</option>
+                    <option value="von-neumann">von neumann</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <button id="ghBtn">GH mode</button>
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=9"></script>
+</body>
+</html>
