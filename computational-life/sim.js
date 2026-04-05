@@ -109,12 +109,17 @@
         }
     }
 
+    const order = new Int32Array(N);
+    for (let i = 0; i < N; i++) order[i] = i;
+
     function step() {
-        // Execute each cell once in random order
+        for (let i = N - 1; i > 0; i--) {
+            const j = (Math.random() * (i + 1)) | 0;
+            const t = order[i]; order[i] = order[j]; order[j] = t;
+        }
         for (let i = 0; i < N; i++) {
-            const idx = (Math.random() * N) | 0;
-            const x = idx % W, y = (idx / W) | 0;
-            executeCell(x, y);
+            const idx = order[i];
+            executeCell(idx % W, (idx / W) | 0);
         }
         totalSteps++;
     }
