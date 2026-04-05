@@ -10,36 +10,32 @@
     <div class="demo-page">
         <header class="demo-header">
             <a href="../index.html" class="back">← back</a>
-            <div class="header-right">
-                <span class="demo-title">Reaction-Diffusion</span>
-                <span class="info-toggle" id="infoToggle">info</span>
-            </div>
+            <span class="demo-title">Reaction-Diffusion</span>
         </header>
 
-        <div class="info-panel" id="infoPanel">
-            <div class="info-inner">
-                <div class="info-section">
-                    <h3>Origin</h3>
-                    <p>Alan Turing proposed reaction-diffusion as the mechanism behind biological pattern formation in his 1952 paper "The Chemical Basis of Morphogenesis" — his final major work. The Gray-Scott model shown here was formulated by Peter Gray and Stephen Scott in 1983 as a minimal two-chemical system that produces a stunning variety of patterns.</p>
-                    <p class="paper-ref">Recent work (2024-2025) shows that on curved surfaces, these patterns become propagating, oscillatory, or chaotic — which is what the deformation brush simulates here.</p>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Alan Turing, "The Chemical Basis of Morphogenesis" (1952) — his final major work. Gray-Scott two-chemical model by Gray &amp; Scott (1983). Recent work (2024-2025) shows curvature-driven dynamics on surfaces.</p>
                 </div>
-                <div class="info-section">
-                    <h3>How It Works</h3>
-                    <p>Two virtual chemicals, U and V, diffuse across a surface at different rates and react: U is consumed to produce V, while V naturally decays. Because V diffuses slower than U, local concentrations of V can sustain themselves by consuming surrounding U faster than it arrives — creating stable spots, stripes, and waves from a uniform initial state. The feed rate (f) controls how quickly U is replenished; the kill rate (k) controls how quickly V decays.</p>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Two virtual chemicals diffuse at different rates and react. The slower one sustains local concentrations, spontaneously forming spots, stripes, spirals, and waves. Feed rate controls replenishment; kill rate controls decay.</p>
                 </div>
-                <div class="info-section">
-                    <h3>Applications</h3>
-                    <p>Explains how leopard spots, zebrafish stripes, coral branching, and fingerprint ridges form in nature. Used in procedural texture generation for games and film, material science for self-assembling nanostructures, and computational morphogenesis research.</p>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Explains leopard spots, zebrafish stripes, coral branching, and fingerprint ridges. Used in procedural textures for games/film, material science, and computational morphogenesis research.</p>
                 </div>
-                <div class="info-section">
-                    <h3>How To Use</h3>
-                    <p><strong>Drag</strong> on the canvas to deform the surface — this warps local diffusion rates, causing patterns to distort, split, and go chaotic. <strong>Shift-click</strong> to seed new chemical V. <strong>Right-click</strong> to inhibit (erase patterns). Choose a <strong>preset</strong> for different pattern types. Hit <strong>random</strong> for a fresh configuration with random seeds and deformations.</p>
+                <div>
+                    <h4>How To Use</h4>
+                    <p><strong>Drag</strong> to deform the surface (warps diffusion rates). <strong>Shift-click</strong> to seed new chemical. <strong>Right-click</strong> to inhibit. Choose a <strong>preset</strong> for different pattern types.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
         <div class="canvas-wrap">
-            <canvas id="canvas" class="smooth"></canvas>
+            <canvas id="canvas"></canvas>
         </div>
         <div class="controls">
             <div class="ctrl">

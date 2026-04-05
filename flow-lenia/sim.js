@@ -5,6 +5,19 @@
     canvas.width = SIZE;
     canvas.height = SIZE;
 
+    function fitCanvas() {
+        const parent = canvas.parentElement;
+        const pw = parent.clientWidth - 16;
+        const ph = parent.clientHeight - 16;
+        if (pw <= 0 || ph <= 0) return;
+        const scale = Math.min(pw / SIZE, ph / SIZE);
+        canvas.style.width = Math.floor(SIZE * scale) + 'px';
+        canvas.style.height = Math.floor(SIZE * scale) + 'px';
+    }
+    window.addEventListener('resize', fitCanvas);
+    setTimeout(fitCanvas, 30);
+    requestAnimationFrame(fitCanvas);
+
     const N = SIZE * SIZE;
     const NUM_SPECIES = 3;
 
@@ -252,14 +265,6 @@
     }
 
     document.getElementById('randomBtn').addEventListener('click', randomize);
-
-    // Info panel toggle
-    const infoToggle = document.getElementById('infoToggle');
-    const infoPanel = document.getElementById('infoPanel');
-    infoToggle.addEventListener('click', () => {
-        infoPanel.classList.toggle('open');
-        infoToggle.classList.toggle('open');
-    });
 
     let frameCount = 0;
     function loop() {

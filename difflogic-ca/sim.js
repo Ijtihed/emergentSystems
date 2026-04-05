@@ -18,6 +18,23 @@
 
     const statusEl = document.getElementById('status');
 
+    function fitCanvases() {
+        const wrap = document.querySelector('.dual-canvas');
+        if (!wrap) return;
+        const ww = wrap.clientWidth - 48;
+        const wh = wrap.clientHeight - 30;
+        if (ww <= 0 || wh <= 0) return;
+        const size = Math.floor(Math.min(ww / 2, wh));
+        if (size <= 0) return;
+        drawCanvas.style.width = size + 'px';
+        drawCanvas.style.height = size + 'px';
+        runCanvas.style.width = size + 'px';
+        runCanvas.style.height = size + 'px';
+    }
+    window.addEventListener('resize', fitCanvases);
+    setTimeout(fitCanvases, 30);
+    requestAnimationFrame(fitCanvases);
+
     function resize() {
         CELL_DRAW = (drawCanvas.width / GRID) | 0;
         CELL_RUN = (runCanvas.width / GRID) | 0;
@@ -384,14 +401,6 @@
     }
 
     document.getElementById('randomBtn').addEventListener('click', randomize);
-
-    // Info panel toggle
-    const infoToggle = document.getElementById('infoToggle');
-    const infoPanel = document.getElementById('infoPanel');
-    infoToggle.addEventListener('click', () => {
-        infoPanel.classList.toggle('open');
-        infoToggle.classList.toggle('open');
-    });
 
     resize();
     initGrids();

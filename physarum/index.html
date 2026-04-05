@@ -10,36 +10,32 @@
     <div class="demo-page">
         <header class="demo-header">
             <a href="../index.html" class="back">← back</a>
-            <div class="header-right">
-                <span class="demo-title">Physarum Transport Networks</span>
-                <span class="info-toggle" id="infoToggle">info</span>
-            </div>
+            <span class="demo-title">Physarum Transport Networks</span>
         </header>
 
-        <div class="info-panel" id="infoPanel">
-            <div class="info-inner">
-                <div class="info-section">
-                    <h3>Origin</h3>
-                    <p>Based on the real slime mold <em>Physarum polycephalum</em>, which solves shortest-path and network optimization problems without any central brain. The organism grows transport networks between food sources that rival human-engineered highway systems.</p>
-                    <p class="paper-ref">Jeff Jones, "Characteristics of Pattern Formation and Evolution in Approximations of Physarum Transport Networks" — 2010, UWE Bristol. Popularized as generative art by Sage Jensen.</p>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Jeff Jones, UWE Bristol (2010). Agent-based model of slime mold <em>Physarum polycephalum</em>, which solves network optimization without any central brain. Popularized as generative art by Sage Jensen.</p>
                 </div>
-                <div class="info-section">
-                    <h3>How It Works</h3>
-                    <p>Thousands of virtual particles each follow three simple rules: sense the chemical trail ahead at three angles (left, center, right), turn toward the strongest signal, then move forward and deposit more trail. The trail diffuses and slowly decays. This positive feedback loop — deposit, sense, follow — creates self-reinforcing organic networks from pure local interactions.</p>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>12,000 particles each sense chemical trail at three angles (left, center, right), turn toward the strongest signal, move forward, and deposit more trail. The trail diffuses and decays. This feedback loop creates self-reinforcing organic transport networks.</p>
                 </div>
-                <div class="info-section">
-                    <h3>Applications</h3>
-                    <p>Network design and logistics optimization, bio-inspired computing, procedural art generation. Physarum-based algorithms have been used to model Tokyo's rail network, optimize supply chains, and explore maze-solving without any global pathfinding.</p>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Bio-inspired network optimization and logistics. Physarum algorithms have replicated Tokyo's rail system. Used in procedural art, maze solving, and supply chain design — all from purely local interactions.</p>
                 </div>
-                <div class="info-section">
-                    <h3>How To Use</h3>
-                    <p><strong>Click</strong> to place food sources — agents will route toward them, forming organic network structures. <strong>Drag</strong> to paint continuous food trails. <strong>Right-click</strong> to clear an area. Adjust sensor angle, distance, and decay to change the emergent behavior. Hit <strong>random</strong> for a fresh configuration.</p>
+                <div>
+                    <h4>How To Use</h4>
+                    <p><strong>Click</strong> to place food sources — agents route toward them. <strong>Drag</strong> to paint continuous trails. <strong>Right-click</strong> to clear areas. Tweak sensor angle, distance, and decay to change the emergent behavior.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
         <div class="canvas-wrap">
-            <canvas id="canvas" class="smooth"></canvas>
+            <canvas id="canvas"></canvas>
         </div>
         <div class="controls">
             <div class="ctrl">
@@ -68,7 +64,7 @@
                 <button id="resetBtn">reset</button>
             </div>
         </div>
-        <div class="hint">click to place food sources · drag to draw · right-click to clear area</div>
+        <div class="hint">click to place food · drag to draw · right-click to clear</div>
     </div>
     <script src="sim.js"></script>
 </body>

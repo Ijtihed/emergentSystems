@@ -7,6 +7,19 @@
     canvas.width = W;
     canvas.height = H;
 
+    function fitCanvas() {
+        const parent = canvas.parentElement;
+        const pw = parent.clientWidth - 16;
+        const ph = parent.clientHeight - 16;
+        if (pw <= 0 || ph <= 0) return;
+        const scale = Math.min(pw / W, ph / H);
+        canvas.style.width = Math.floor(W * scale) + 'px';
+        canvas.style.height = Math.floor(H * scale) + 'px';
+    }
+    window.addEventListener('resize', fitCanvas);
+    setTimeout(fitCanvas, 30);
+    requestAnimationFrame(fitCanvas);
+
     const NUM_AGENTS = 12000;
 
     let trail = new Float32Array(W * H);
@@ -254,14 +267,6 @@
     }
 
     document.getElementById('randomBtn').addEventListener('click', randomize);
-
-    // Info panel toggle
-    const infoToggle = document.getElementById('infoToggle');
-    const infoPanel = document.getElementById('infoPanel');
-    infoToggle.addEventListener('click', () => {
-        infoPanel.classList.toggle('open');
-        infoToggle.classList.toggle('open');
-    });
 
     initAgents();
     loop();
