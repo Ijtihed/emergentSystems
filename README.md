@@ -1,7 +1,7 @@
 <div align="center">
 
 <h1>emergent systems.</h1>
-<h3><em>Interactive explorations of self-organizing computation.</em></h3>
+<h3><em>Interactive explorations of novel* self-organizing computation.</em></h3>
 
 <p>
   <a href="https://emergent-systems-five.vercel.app"><img src="https://img.shields.io/badge/Live-Demo-8a9bb5?style=for-the-badge" alt="Live Demo"></a>
@@ -16,6 +16,8 @@
 <img src="public/screenshot.png" alt="emergent systems landing page" width="1080" />
 
 </div>
+
+* = haven't been done / explored well before.
 
 ---
 
