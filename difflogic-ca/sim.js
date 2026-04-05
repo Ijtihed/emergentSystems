@@ -257,6 +257,9 @@
         learning = false;
         if (bestRule) {
             statusEl.textContent = `done · fitness ${(bestFitness * 100).toFixed(1)}% · click run`;
+            // Show the best result immediately: target under the learned rule
+            const demo = runCA(new Uint8Array(target), bestRule, 3);
+            renderGrid(runCtx, demo, CELL_RUN);
         } else {
             statusEl.textContent = 'no rules found';
         }
@@ -276,8 +279,7 @@
         }
         learning = false;
         running = true;
-        const tDensity = target.reduce((a, b) => a + b, 0) / (GRID * GRID);
-        grid = randomInit(Math.max(0.1, tDensity));
+        grid = new Uint8Array(target);
         generation = 0;
         animate();
     }
@@ -287,15 +289,28 @@
         tickFps();
         grid = runCA(grid, bestRule, 1);
         generation++;
-        if (generation % 60 === 0) {
-            const count = 3 + (Math.random() * 6) | 0;
-            for (let i = 0; i < count; i++) {
-                const idx = (Math.random() * GRID * GRID) | 0;
-                grid[idx] = 1 - grid[idx];
+
+        // Periodic damage to show self-repair behavior
+        if (generation % 20 === 0) {
+            const cx = (Math.random() * GRID) | 0;
+            const cy = (Math.random() * GRID) | 0;
+            const r = 2 + (Math.random() * 4) | 0;
+            for (let dy = -r; dy <= r; dy++) {
+                for (let dx = -r; dx <= r; dx++) {
+                    if (dx * dx + dy * dy > r * r) continue;
+                    const x = (cx + dx + GRID) % GRID;
+                    const y = (cy + dy + GRID) % GRID;
+                    grid[y * GRID + x] = 1 - grid[y * GRID + x];
+                }
             }
         }
+
         renderGrid(runCtx, grid, CELL_RUN);
-        statusEl.textContent = `running · gen ${generation}`;
+
+        let match = 0;
+        for (let i = 0; i < GRID * GRID; i++) if (grid[i] === target[i]) match++;
+        const pct = ((match / (GRID * GRID)) * 100).toFixed(0);
+        statusEl.textContent = `running · gen ${generation} · ${pct}% match`;
         animFrame = requestAnimationFrame(animate);
     }
 
