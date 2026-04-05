@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>difflogic ca . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=6">
+    <script src="../device-gate.js?v=1" defer></script>
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">DiffLogic Cellular Automata</span>
+        </header>
+
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Inspired by <a href="https://google-research.github.io/self-organising-systems/difflogic-ca/" target="_blank">Miotti, Niklasson, Randazzo, Mordvintsev at Google, March 2025</a>. <a href="https://arxiv.org/abs/2506.04912" target="_blank">arXiv</a>. The paper trains logic gate circuits via gradient descent on continuous relaxations to learn CA rules. This demo uses evolutionary search as a browser-accessible alternative.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>The paper uses multi-bit cell states and networks of 16 possible logic gates trained end-to-end. This demo simplifies to 1-bit cells with outer-totalistic rules, where a genetic algorithm evolves the 18-bit rule table by testing which rules keep your target pattern stable under iteration.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>The full DiffLogic approach enables learnable programmable matter and robust self-healing circuits. This demo explores the core idea, reverse-engineering local rules from desired global patterns, which is the central question the paper addresses.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="dual-canvas">
+            <div class="panel">
+                <span class="panel-label">target pattern</span>
+                <canvas id="drawCanvas" width="480" height="480"></canvas>
+            </div>
+            <div class="panel">
+                <span class="panel-label">learned rule</span>
+                <canvas id="runCanvas" width="480" height="480"></canvas>
+            </div>
+        </div>
+        <div class="usage">
+            <span class="key">draw</span> a target pattern on the left<span class="sep">·</span>click <span class="key">learn</span> to evolve matching rules<span class="sep">·</span>click <span class="key">run</span> to animate on the right
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <button id="drawBtn" class="active">draw</button>
+            </div>
+            <div class="ctrl">
+                <button id="eraseBtn">erase</button>
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="learnBtn">learn rules</button>
+            </div>
+            <div class="ctrl">
+                <button id="runBtn">run</button>
+            </div>
+            <div class="ctrl">
+                <button id="clearBtn">clear</button>
+            </div>
+            <div class="ctrl">
+                <label>grid</label>
+                <select id="gridSize">
+                    <option value="32">32×32</option>
+                    <option value="48" selected>48×48</option>
+                    <option value="64">64×64</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">draw a target pattern</span>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=6"></script>
+</body>
+</html>
+
+
+

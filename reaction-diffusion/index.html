@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>reaction-diffusion — emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=3">
+    <script src="../device-gate.js?v=1" defer></script>
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Reaction-Diffusion</span>
+        </header>
+
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p>Alan Turing proposed reaction-diffusion in The Chemical Basis of Morphogenesis, 1952. The <a href="https://www.mrob.com/pub/comp/xmorphia/index.html" target="_blank">Gray-Scott model</a> implemented here was formulated by Gray and Scott in 1983. <a href="https://karlsims.com/rd.html" target="_blank">Karl Sims tutorial</a>. Surface deformation inspired by <a href="https://arxiv.org/abs/2403.09247" target="_blank">2024 curvature research</a>.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Implements the standard Gray-Scott equations. Chemical U feeds in at rate f, is consumed by autocatalytic reaction U + 2V to 3V, while V decays at rate f+k. U diffuses twice as fast as V. This imbalance in diffusion rates drives spontaneous pattern formation from uniform initial conditions.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Explains biological pattern formation, leopard spots, zebrafish stripes, coral branching, fingerprint ridges. Used in procedural textures for games and film, material science, and computational morphogenesis research.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="usage">
+            <span class="key">drag</span> deform surface<span class="sep">·</span><span class="key">shift-click</span> seed chemical<span class="sep">·</span><span class="key">ctrl-drag</span> paint f/k spatially<span class="sep">·</span><span class="key">right-click</span> inhibit
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>preset</label>
+                <select id="preset">
+                    <option value="coral">coral</option>
+                    <option value="mitosis">mitosis</option>
+                    <option value="spirals">spirals</option>
+                    <option value="solitons">solitons</option>
+                    <option value="worms">worms</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label>feed</label>
+                <input type="range" id="feed" min="0" max="100" value="55">
+                <span class="val" id="feedVal"></span>
+            </div>
+            <div class="ctrl">
+                <label>kill</label>
+                <input type="range" id="kill" min="0" max="100" value="62">
+                <span class="val" id="killVal"></span>
+            </div>
+            <div class="ctrl">
+                <label>brush</label>
+                <input type="range" id="brushSize" min="2" max="30" value="12">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=3"></script>
+</body>
+</html>
