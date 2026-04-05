@@ -116,8 +116,10 @@
                     let sum = 0;
                     for (let k = 0; k < len; k++) {
                         const off = ring[k];
-                        const oy = ((y + ((off / W) | 0) + H) % H);
-                        const ox = ((x + (off % W) + W) % W);
+                        const dy = Math.floor(off / W);
+                        const dx = off - dy * W;
+                        const oy = ((y + dy + H) % H);
+                        const ox = ((x + dx + W) % W);
                         sum += grid[oy * W + ox];
                     }
                     avg[y * W + x] = sum / len;

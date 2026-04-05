@@ -51,23 +51,19 @@
 
     function topplePass() {
         let didTopple = false;
-        for (let y = 1; y < H - 1; y++) {
-            for (let x = 1; x < W - 1; x++) {
+        for (let y = 0; y < H; y++) {
+            for (let x = 0; x < W; x++) {
                 const i = y * W + x;
-                if (grid[i] >= 4) {
-                    const give = (grid[i] / 4) | 0;
-                    grid[i] -= give * 4;
-                    grid[i - 1] += give;
-                    grid[i + 1] += give;
-                    grid[i - W] += give;
-                    grid[i + W] += give;
-                    didTopple = true;
-                }
+                if (grid[i] < 4) continue;
+                const give = (grid[i] / 4) | 0;
+                grid[i] -= give * 4;
+                if (x > 0) grid[i - 1] += give;
+                if (x < W - 1) grid[i + 1] += give;
+                if (y > 0) grid[i - W] += give;
+                if (y < H - 1) grid[i + W] += give;
+                didTopple = true;
             }
         }
-        // Drain edges
-        for (let x = 0; x < W; x++) { grid[x] = Math.min(grid[x], 3); grid[(H - 1) * W + x] = Math.min(grid[(H - 1) * W + x], 3); }
-        for (let y = 0; y < H; y++) { grid[y * W] = Math.min(grid[y * W], 3); grid[y * W + W - 1] = Math.min(grid[y * W + W - 1], 3); }
         return didTopple;
     }
 
@@ -115,13 +111,10 @@
         if (toppling) {
             let passes = 0;
             const maxPasses = 200;
-            while (passes < maxPasses && topplePass()) passes++;
-            if (passes === 0) {
-                toppling = false;
-                statusEl.textContent = 'stable';
-            } else {
-                statusEl.textContent = 'toppling...';
-            }
+            let more = true;
+            while (passes < maxPasses && (more = topplePass())) passes++;
+            toppling = more;
+            statusEl.textContent = more ? 'toppling...' : 'stable';
         }
         render();
         requestAnimationFrame(loop);

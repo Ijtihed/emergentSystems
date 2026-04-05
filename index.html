@@ -48,11 +48,6 @@
                 <div class="card-title">Reaction-Diffusion</div>
                 <div class="card-desc">Gray-Scott with spatial painting and deformable surface.</div>
             </a>
-            <a href="wireworld/index.html" class="demo-card">
-                <canvas class="demo-preview" data-sim="wireworld" width="72" height="72"></canvas>
-                <div class="card-title">Wireworld</div>
-                <div class="card-desc">Draw pixel circuits and watch electrons flow.</div>
-            </a>
             <a href="difflogic-ca/index.html" class="demo-card">
                 <canvas class="demo-preview" data-sim="difflogic" width="72" height="72"></canvas>
                 <div class="card-title">DiffLogic CA</div>
@@ -129,13 +124,6 @@
                     px[i*4]=v*160|0;px[i*4+1]=v*175|0;px[i*4+2]=v*220|0;px[i*4+3]=255;
                 }
                 ctx.putImageData(img,0,0);
-            } else if (sim === 'wireworld') {
-                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
-                ctx.strokeStyle='#3a3f45';ctx.lineWidth=1;
-                ctx.beginPath();ctx.moveTo(10,S/2);ctx.lineTo(62,S/2);ctx.stroke();
-                ctx.beginPath();ctx.moveTo(10,20);ctx.lineTo(40,20);ctx.lineTo(40,S/2);ctx.stroke();
-                ctx.fillStyle='#5aadE6';ctx.fillRect(12,S/2-1,3,3);
-                ctx.fillStyle='#e6823c';ctx.fillRect(16,S/2-1,3,3);
             } else if (sim === 'difflogic') {
                 for(let i=0;i<S*S;i++){
                     const x=i%S,y=i/S|0;

@@ -101,8 +101,8 @@
 
             a.vx = (a.vx + fx * 0.5) * (1 - friction);
             a.vy = (a.vy + fy * 0.5) * (1 - friction);
-            a.x = (a.x + a.vx + W) % W;
-            a.y = (a.y + a.vy + H) % H;
+            a.x = ((a.x + a.vx) % W + W) % W;
+            a.y = ((a.y + a.vy) % H + H) % H;
         }
     }
 

@@ -29,8 +29,13 @@
         { act: 4,  inh: 12,  step: 0.04 },
         { act: 8,  inh: 24,  step: 0.03 },
         { act: 12, inh: 36,  step: 0.025 },
-        { act: 20, inh: 60,  step: 0.02 }
+        { act: 20, inh: 60,  step: 0.02 },
+        { act: 32, inh: 96,  step: 0.015 }
     ];
+
+    const MAX_SCALES = 6;
+    const actBlurBufs = Array.from({ length: MAX_SCALES }, () => new Float32Array(W * H));
+    const inhBlurBufs = Array.from({ length: MAX_SCALES }, () => new Float32Array(W * H));
 
     let numScales = 5;
     let stepMul = 1.0;
@@ -80,28 +85,27 @@
 
     function step() {
         const scales = defaultScales.slice(0, numScales);
-        const actBlurs = scales.map(() => new Float32Array(W * H));
-        const inhBlurs = scales.map(() => new Float32Array(W * H));
+        const n = scales.length;
 
-        for (let s = 0; s < scales.length; s++) {
-            multiBoxBlur(grid, actBlurs[s], scales[s].act);
-            multiBoxBlur(grid, inhBlurs[s], scales[s].inh);
+        for (let s = 0; s < n; s++) {
+            multiBoxBlur(grid, actBlurBufs[s], scales[s].act);
+            multiBoxBlur(grid, inhBlurBufs[s], scales[s].inh);
         }
 
         for (let i = 0; i < W * H; i++) {
             let bestScale = 0;
             let bestVar = Infinity;
 
-            for (let s = 0; s < scales.length; s++) {
-                const diff = Math.abs(actBlurs[s][i] - inhBlurs[s][i]);
+            for (let s = 0; s < n; s++) {
+                const diff = Math.abs(actBlurBufs[s][i] - inhBlurBufs[s][i]);
                 if (diff < bestVar) {
                     bestVar = diff;
                     bestScale = s;
                 }
             }
 
-            const act = actBlurs[bestScale][i];
-            const inh = inhBlurs[bestScale][i];
+            const act = actBlurBufs[bestScale][i];
+            const inh = inhBlurBufs[bestScale][i];
             const stepAmt = scales[bestScale].step * stepMul;
             grid[i] += act > inh ? stepAmt : -stepAmt;
 
