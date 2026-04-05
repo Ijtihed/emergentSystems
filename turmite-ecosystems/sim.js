@@ -41,7 +41,7 @@
     let ants = [];
     let stepsPerFrame = 80;
     let totalSteps = 0;
-    let placeSpecies = 'langton';
+    let placeSpecies = 'A';
     let speciesA = 'langton', speciesB = 'highway', speciesC = 'spiral';
 
     // Color palette: background + species colors blended
@@ -73,10 +73,10 @@
     function placeColony(cx, cy, speciesName, groupId) {
         const sp = speciesLib[speciesName];
         if (!sp) return;
-        const count = 3 + (Math.random() * 3) | 0;
+        const count = 3 + ((Math.random() * 3) | 0);
         for (let i = 0; i < count; i++) {
-            const x = ((cx + (Math.random() - 0.5) * 30) | 0 + W) % W;
-            const y = ((cy + (Math.random() - 0.5) * 30) | 0 + H) % H;
+            const x = (((cx + (Math.random() - 0.5) * 30) | 0) + W) % W;
+            const y = (((cy + (Math.random() - 0.5) * 30) | 0) + H) % H;
             ants.push({
                 x, y,
                 dir: (Math.random() * 4) | 0,

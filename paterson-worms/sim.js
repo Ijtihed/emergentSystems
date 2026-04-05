@@ -75,12 +75,13 @@
         'snowflake': [1, 0, 5, 2, 0, 1, 4]
     };
 
-    function configSignature(q, r, incomingDir) {
+    function configSignature(q, r, outgoingDir) {
         let bits = 0;
         for (let d = 0; d < 6; d++) {
             if (isEaten(q, r, d)) bits |= (1 << d);
         }
-        return `${bits},${incomingDir}`;
+        const incoming = (outgoingDir + 3) % 6;
+        return `${bits},${incoming}`;
     }
 
     function init(presetName) {
@@ -119,10 +120,9 @@
         } else {
             // New config, use next rule choice
             if (nextRuleIdx < ruleChoices.length) {
-                // Relative direction: 0=straight ahead (opposite of incoming), rotating clockwise
-                const straight = (wormDir + 3) % 6; // opposite of incoming
+                // Relative direction: 0=straight ahead (same as last outgoing), rotating clockwise
                 const relChoice = ruleChoices[nextRuleIdx];
-                chosenDir = (straight + relChoice) % 6;
+                chosenDir = (wormDir + relChoice) % 6;
                 nextRuleIdx++;
             } else {
                 // No more rules, pick first available

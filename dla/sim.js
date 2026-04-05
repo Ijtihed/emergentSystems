@@ -74,11 +74,12 @@
         const w = spawnWalker();
         const maxSteps = W * H;
         for (let s = 0; s < maxSteps; s++) {
-            // Random walk with optional bias
             const dx = ((Math.random() * 3) | 0) - 1 + biasX;
             const dy = ((Math.random() * 3) | 0) - 1 + biasY;
-            w.x = Math.max(0, Math.min(W - 1, w.x + (dx > 0 ? 1 : dx < 0 ? -1 : 0)));
-            w.y = Math.max(0, Math.min(H - 1, w.y + (dy > 0 ? 1 : dy < 0 ? -1 : 0)));
+            w.x += (dx > 0 ? 1 : dx < 0 ? -1 : 0);
+            w.y += (dy > 0 ? 1 : dy < 0 ? -1 : 0);
+
+            if (w.x < 0 || w.x >= W || w.y < 0 || w.y >= H) return;
 
             const neighbor = hasNeighbor(w.x, w.y);
             if (neighbor > 0 && grid[w.y * W + w.x] === 0) {
@@ -87,11 +88,6 @@
                     totalStuck++;
                     return;
                 }
-            }
-
-            // Kill walker if it reaches edge again
-            if (w.x <= 0 || w.x >= W - 1 || w.y <= 0 || w.y >= H - 1) {
-                if (s > 100) return;
             }
         }
     }

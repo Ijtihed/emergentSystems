@@ -32,6 +32,8 @@
     let py = new Float32Array(NUM);
     let ph = new Float32Array(NUM); // heading
     let pn = new Int32Array(NUM);   // neighbor count for coloring
+    let pxSnap = new Float32Array(NUM);
+    let pySnap = new Float32Array(NUM);
 
     function init() {
         for (let i = 0; i < NUM; i++) {
@@ -51,13 +53,16 @@
         const r2 = (radius * particleSize * 2);
         const r2sq = r2 * r2;
 
+        pxSnap.set(px);
+        pySnap.set(py);
+
         for (let i = 0; i < NUM; i++) {
             let nLeft = 0, nRight = 0, nTotal = 0;
 
             for (let j = 0; j < NUM; j++) {
                 if (i === j) continue;
-                const dx = px[j] - px[i];
-                const dy = py[j] - py[i];
+                const dx = pxSnap[j] - pxSnap[i];
+                const dy = pySnap[j] - pySnap[i];
                 const d2 = dx * dx + dy * dy;
                 if (d2 < r2sq) {
                     nTotal++;
@@ -73,9 +78,8 @@
             const deltaPhi = alpha + beta * nTotal * Math.sign(nRight - nLeft);
             ph[i] = scope(ph[i] + deltaPhi);
 
-            // Move forward
-            px[i] += speed * particleSize * 2 * Math.cos(ph[i]);
-            py[i] += speed * particleSize * 2 * Math.sin(ph[i]);
+            px[i] += speed * Math.cos(ph[i]);
+            py[i] += speed * Math.sin(ph[i]);
 
             // Wrap
             if (px[i] < -particleSize) px[i] = W + particleSize;
