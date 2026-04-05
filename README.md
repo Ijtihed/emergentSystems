@@ -12,8 +12,7 @@
 
 <br />
 
-<!-- Add your screenshot here -->
-<!-- <img src="public/screenshot.png" alt="emergent systems landing page" width="1080" /> -->
+<img src="public/screenshot.png" alt="emergent systems landing page" width="1080" />
 
 </div>
 
