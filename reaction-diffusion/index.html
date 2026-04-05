@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reaction-diffusion — emergent systems</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Reaction-Diffusion</span>
+        </header>
+        <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>preset</label>
+                <select id="preset">
+                    <option value="coral">coral</option>
+                    <option value="mitosis">mitosis</option>
+                    <option value="spirals">spirals</option>
+                    <option value="solitons">solitons</option>
+                    <option value="worms">worms</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label>feed</label>
+                <input type="range" id="feed" min="0" max="100" value="55">
+                <span class="val" id="feedVal"></span>
+            </div>
+            <div class="ctrl">
+                <label>kill</label>
+                <input type="range" id="kill" min="0" max="100" value="62">
+                <span class="val" id="killVal"></span>
+            </div>
+            <div class="ctrl">
+                <label>brush</label>
+                <input type="range" id="brushSize" min="2" max="30" value="10">
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
+        <div class="hint">click to seed chemical · drag to deform surface · right-click to add inhibitor</div>
+    </div>
+    <script src="sim.js"></script>
+</body>
+</html>

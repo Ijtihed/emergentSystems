@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flow-lenia — emergent systems</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Flow-Lenia</span>
+        </header>
+        <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>species</label>
+                <select id="species">
+                    <option value="0">alpha</option>
+                    <option value="1">beta</option>
+                    <option value="2">gamma</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label>dt</label>
+                <input type="range" id="dt" min="1" max="20" value="10">
+            </div>
+            <div class="ctrl">
+                <label>brush</label>
+                <input type="range" id="brushSize" min="3" max="25" value="10">
+            </div>
+            <div class="ctrl">
+                <button id="pauseBtn">pause</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">running</span>
+            </div>
+        </div>
+        <div class="hint">click to place organisms · scroll to change brush size · watch species compete and coexist</div>
+    </div>
+    <script src="sim.js"></script>
+</body>
+</html>

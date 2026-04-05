@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>difflogic ca — emergent systems</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">DiffLogic Cellular Automata</span>
+        </header>
+        <div class="dual-canvas">
+            <div class="panel">
+                <span class="panel-label">target pattern</span>
+                <canvas id="drawCanvas" width="384" height="384"></canvas>
+            </div>
+            <div class="panel">
+                <span class="panel-label">learned rule</span>
+                <canvas id="runCanvas" width="384" height="384"></canvas>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <button id="drawBtn" class="active">draw</button>
+            </div>
+            <div class="ctrl">
+                <button id="eraseBtn">erase</button>
+            </div>
+            <div class="ctrl">
+                <button id="learnBtn">learn rules</button>
+            </div>
+            <div class="ctrl">
+                <button id="runBtn">run</button>
+            </div>
+            <div class="ctrl">
+                <button id="clearBtn">clear</button>
+            </div>
+            <div class="ctrl">
+                <label>grid</label>
+                <select id="gridSize">
+                    <option value="32">32×32</option>
+                    <option value="48">48×48</option>
+                    <option value="64" selected>64×64</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">draw a target pattern</span>
+            </div>
+        </div>
+        <div class="hint">paint cells on the left · click learn to evolve rules · watch the ca emerge on the right</div>
+    </div>
+    <script src="sim.js"></script>
+</body>
+</html>

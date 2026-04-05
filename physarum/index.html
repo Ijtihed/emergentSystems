@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>physarum — emergent systems</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Physarum Transport Networks</span>
+        </header>
+        <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>sensor angle</label>
+                <input type="range" id="sensorAngle" min="5" max="90" value="45">
+            </div>
+            <div class="ctrl">
+                <label>sensor dist</label>
+                <input type="range" id="sensorDist" min="1" max="40" value="12">
+            </div>
+            <div class="ctrl">
+                <label>turn speed</label>
+                <input type="range" id="turnSpeed" min="5" max="90" value="45">
+            </div>
+            <div class="ctrl">
+                <label>decay</label>
+                <input type="range" id="decay" min="80" max="99" value="96">
+            </div>
+            <div class="ctrl">
+                <button id="clearBtn">clear trails</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
+        <div class="hint">click to place food sources · drag to draw · right-click to clear area</div>
+    </div>
+    <script src="sim.js"></script>
+</body>
+</html>
