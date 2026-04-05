@@ -76,54 +76,52 @@ a:hover {
     text-align: center;
 }
 
-.demo-list {
-    list-style: none;
-    width: 100%;
-    max-width: 560px;
-}
-
-.demo-list li {
-    border-top: 1px solid var(--border);
-}
-
-.demo-list li:last-child {
-    border-bottom: 1px solid var(--border);
-}
-
-.demo-list a {
+.demo-grid {
     display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 1.4rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.demo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 140px;
+    text-align: center;
     color: var(--text);
     transition: opacity 0.25s ease;
+    padding: 0.8rem 0.4rem;
 }
 
-.demo-list a:hover {
+.demo-card:hover {
     opacity: 0.7;
 }
 
-.demo-list .num {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 300;
-    color: var(--text-dim);
-    min-width: 1.8rem;
-    padding-top: 0.15rem;
-}
-
-.demo-list .info .title {
-    font-family: var(--font-headline);
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
+.demo-preview {
+    width: 72px;
+    height: 72px;
+    border: 1px solid var(--border);
+    image-rendering: pixelated;
     margin-bottom: 0.3rem;
 }
 
-.demo-list .info .desc {
-    font-size: 0.75rem;
+.demo-card .card-title {
+    font-family: var(--font-headline);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+}
+
+.demo-card .card-desc {
+    font-size: 0.58rem;
     color: var(--text-muted);
     font-weight: 400;
+    line-height: 1.4;
 }
 
 .landing-footer {
