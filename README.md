@@ -5,7 +5,7 @@
 
 <p>
   <a href="https://emergent-systems-five.vercel.app"><img src="https://img.shields.io/badge/Live-Demo-8a9bb5?style=for-the-badge" alt="Live Demo"></a>
-  <a href="https://github.com/Ijtihed/emergentSystems"><img src="https://img.shields.io/badge/Demos-23-8a9bb5?style=for-the-badge" alt="23 Demos"></a>
+  <a href="https://github.com/Ijtihed/emergentSystems"><img src="https://img.shields.io/badge/Demos-22-8a9bb5?style=for-the-badge" alt="22 Demos"></a>
   <a href="https://github.com/Ijtihed/emergentSystems"><img src="https://img.shields.io/badge/Built_with-Vanilla_JS-f7df1e?style=for-the-badge&logo=javascript&logoColor=black" alt="Built with Vanilla JS"></a>
   <a href="https://github.com/Ijtihed/emergentSystems"><img src="https://img.shields.io/badge/Dependencies-Zero-2E8B57?style=for-the-badge" alt="Zero Dependencies"></a>
   <a href="https://github.com/Ijtihed/emergentSystems/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"></a>
@@ -21,7 +21,7 @@
 
 ---
 
-> 23 browser-based simulations of cellular automata, particle systems, and artificial life. Each one is faithful to the original research paper. No build step, no dependencies, no frameworks. Just HTML, CSS, and Canvas.
+> 22 browser-based simulations of cellular automata, particle systems, and artificial life. Each one is faithful to the original research paper. No build step, no dependencies, no frameworks. Just HTML, CSS, and Canvas.
 
 ---
 
@@ -45,13 +45,12 @@
 | 14 | [**Cyclic CA**](cyclic-ca/index.html) | Greenberg and Hastings. Fisch, Gravner, Griffeath. | 1978 |
 | 15 | [**Non-Reciprocal Flocking**](flocking/index.html) | Chatterjee et al., Communications Physics. | 2025 |
 | 16 | [**Dielectric Breakdown**](dielectric-breakdown/index.html) | Niemeyer, Pietronero, Wiesmann, Phys. Rev. Lett. | 1984 |
-| 17 | [**Langton's Loops**](langton-loops/index.html) | Langton, Self-reproduction in cellular automata. | 1984 |
-| 18 | [**Multi-Seed Growth**](multi-seed-growth/index.html) | Eden 1961. Wilkinson and Willemsen 1983. | 1961 |
-| 19 | [**Neural Particle Automata**](neural-particles/index.html) | Zhu et al., arXiv:2601.16096. | 2026 |
-| 20 | [**Particle Life++**](particle-life-plus/index.html) | Sakana AI, ASAL. Foundation model-guided discovery. | 2024 |
-| 21 | [**Evolving GoL**](het-gol/index.html) | Plantec et al., arXiv:2406.13383. | 2024 |
-| 22 | [**Evoloops**](evoloops/index.html) | Sayama. First CA with Darwinian evolution. | 1999 |
-| 23 | [**Computational Life**](computational-life/index.html) | Aguera y Arcas et al., Google. arXiv:2406.19108. | 2024 |
+| 17 | [**Multi-Seed Growth**](multi-seed-growth/index.html) | Eden 1961. Wilkinson and Willemsen 1983. | 1961 |
+| 18 | [**Neural Particle Automata**](neural-particles/index.html) | Zhu et al., arXiv:2601.16096. | 2026 |
+| 19 | [**Particle Life++**](particle-life-plus/index.html) | Sakana AI, ASAL. Foundation model-guided discovery. | 2024 |
+| 20 | [**Evolving GoL**](het-gol/index.html) | Plantec et al., arXiv:2406.13383. | 2024 |
+| 21 | [**Evoloops**](evoloops/index.html) | Sayama. First CA with Darwinian evolution. | 1999 |
+| 22 | [**Computational Life**](computational-life/index.html) | Aguera y Arcas et al., Google. arXiv:2406.19108. | 2024 |
 
 ## How It Works
 
@@ -83,7 +82,7 @@ emergentSystems/
     sim.js                  Simulation engine
   turmites/
   mnca/
-  ... (23 demo folders)
+  ... (22 demo folders)
   docs/
     roadmap.md             Future demos and expansion areas
 ```
@@ -97,7 +96,7 @@ Every simulation was audited against its source paper. The info bar on each demo
 ## References
 
 <details>
-<summary>Full citation list (25 papers)</summary>
+<summary>Full citation list (24 papers)</summary>
 
 - Ventrella, Jeffrey (2005). Clusters.
 - Langton, Chris (1986). Langton's Ant.
@@ -116,7 +115,6 @@ Every simulation was audited against its source paper. The info bar on each demo
 - Fisch, Gravner, Griffeath (1991). Cyclic cellular automata phase diagram.
 - Chatterjee et al. (2025). Emergent complex phases in a discrete flocking model. Communications Physics.
 - Niemeyer, Pietronero, Wiesmann (1984). Fractal dimension of dielectric breakdown.
-- Langton, Christopher (1984). Self-reproduction in cellular automata.
 - Eden, Murray (1961). Two-dimensional growth process.
 - Wilkinson and Willemsen (1983). Invasion percolation.
 - Zhu et al. (2026). Neural Particle Automata. arXiv:2601.16096.
