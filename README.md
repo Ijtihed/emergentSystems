@@ -1,137 +1,139 @@
-<div align="center">
+<h1 align="center">oChess</h1>
 
-<h1>emergent systems.</h1>
-<h3><em>Interactive explorations of self-organizing computation.</em></h3>
-
-<p>
-  <a href="https://github.com/Ijtihed/emergentSystems"><img src="https://img.shields.io/badge/Demos-23-8a9bb5?style=for-the-badge" alt="23 Demos"></a>
-  <a href="https://github.com/Ijtihed/emergentSystems"><img src="https://img.shields.io/badge/Built_with-Vanilla_JS-f7df1e?style=for-the-badge&logo=javascript&logoColor=black" alt="Built with Vanilla JS"></a>
-  <a href="https://github.com/Ijtihed/emergentSystems"><img src="https://img.shields.io/badge/Dependencies-Zero-2E8B57?style=for-the-badge" alt="Zero Dependencies"></a>
-  <a href="https://github.com/Ijtihed/emergentSystems/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"></a>
+<p align="center">
+  <img src="ochess-app/public/bishoplogo.png" alt="oChess Logo" width="200"/>
 </p>
 
-<br />
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-0.1-black?color=black&labelColor=black" alt="Version 0.1">
+  <img src="https://img.shields.io/badge/License-Apache%202.0-black?color=black&labelColor=black" alt="License Apache 2.0">
+  <img src="https://img.shields.io/badge/Platform-Web-black?color=black&labelColor=black" alt="Platform Web">
+</p>
 
-<img src="public/screenshot.png" alt="emergent systems landing page" width="1080" />
+<p align="center">
+  A modern chess-first platform for play, analysis, puzzles, and long-term improvement.
+</p>
 
-</div>
+<p align="center">
+  <img src="ochess-app/public/screenshotpuzzle.png" alt="oChess puzzle screenshot" width="1080" />
+</p>
 
 ---
 
-> 23 browser-based simulations of cellular automata, particle systems, and artificial life. Each one is faithful to the original research paper. No build step, no dependencies, no frameworks. Just HTML, CSS, and Canvas.
+# Wait, Another Chess Platform?
 
----
+<table>
+<tr>
+<td width="68%" valign="top">
+  <p><strong>Yes, and intentionally so.</strong></p>
+  <p><strong>oChess</strong> is built around one core idea: the game should not end when the clock hits zero.<br />
+  Most platforms let your mistakes disappear into history; oChess turns them into a learning loop.</p>
+  <p>From fast play and bots to analysis, review, and coaching, every feature is designed to feel:</p>
+  <ul>
+    <li>simple</li>
+    <li>premium</li>
+    <li>fast</li>
+    <li>user-first</li>
+  </ul>
+</td>
+<td width="32%" align="center" valign="middle">
+  <img src="ochess-app/public/surprisedpiece.png" alt="Surprised chess piece" width="240"/>
+</td>
+</tr>
+</table>
 
-## Demos
+## What Makes oChess Different
 
-| # | Demo | Paper | Year |
-|---|------|-------|------|
-| 01 | [**Particle Life**](particle-life/index.html) | Ventrella, Clusters. Hunar Ahmad, brainxyz. | 2005, 2022 |
-| 02 | [**Turmite Ecosystems**](turmite-ecosystems/index.html) | Multi-species extension of Langton's Ant. Ed Pegg survey. | 1986 |
-| 03 | [**Primordial Particles**](primordial-particles/index.html) | Schmickl et al., Scientific Reports. | 2016 |
-| 04 | [**Swarm Chemistry**](swarm-chemistry/index.html) | Sayama, Artificial Life 15(1). ISAL Paper of the Decade. | 2009 |
-| 05 | [**Turmites**](turmites/index.html) | Langton's Ant generalized to N colors, M states. | 1986 |
-| 06 | [**MNCA**](mnca/index.html) | Slackermanz, Multiple Neighborhood Cellular Automata. | 2014 |
-| 07 | [**Multi-Scale Turing**](turing-patterns/index.html) | McCabe, Cyclic Symmetric Multi-Scale Turing Patterns, Bridges. | 2010 |
-| 08 | [**Paterson's Worms**](paterson-worms/index.html) | Paterson and Conway. Martin Gardner, Scientific American. | 1971 |
-| 09 | [**DLA**](dla/index.html) | Witten and Sander, Diffusion-Limited Aggregation. | 1981 |
-| 10 | [**Physarum**](physarum/index.html) | Jones, Artificial Life journal. | 2010 |
-| 11 | [**Abelian Sandpile**](sandpile/index.html) | Bak, Tang, Wiesenfeld. Self-organized criticality. | 1987 |
-| 12 | [**Reaction-Diffusion**](reaction-diffusion/index.html) | Turing 1952. Gray-Scott 1983. Spatial f/k painting. | 1952 |
-| 13 | [**DiffLogic CA**](difflogic-ca/index.html) | Miotti, Niklasson, Randazzo, Mordvintsev. Google. | 2025 |
-| 14 | [**Cyclic CA**](cyclic-ca/index.html) | Greenberg and Hastings. Fisch, Gravner, Griffeath. | 1978 |
-| 15 | [**Non-Reciprocal Flocking**](flocking/index.html) | Chatterjee et al., Communications Physics. | 2025 |
-| 16 | [**Dielectric Breakdown**](dielectric-breakdown/index.html) | Niemeyer, Pietronero, Wiesmann, Phys. Rev. Lett. | 1984 |
-| 17 | [**Langton's Loops**](langton-loops/index.html) | Langton, Self-reproduction in cellular automata. | 1984 |
-| 18 | [**Multi-Seed Growth**](multi-seed-growth/index.html) | Eden 1961. Wilkinson and Willemsen 1983. | 1961 |
-| 19 | [**Neural Particle Automata**](neural-particles/index.html) | Zhu et al., arXiv:2601.16096. | 2026 |
-| 20 | [**Particle Life++**](particle-life-plus/index.html) | Sakana AI, ASAL. Foundation model-guided discovery. | 2024 |
-| 21 | [**Evolving GoL**](het-gol/index.html) | Plantec et al., arXiv:2406.13383. | 2024 |
-| 22 | [**Evoloops**](evoloops/index.html) | Sayama. First CA with Darwinian evolution. | 1999 |
-| 23 | [**Computational Life**](computational-life/index.html) | Aguera y Arcas et al., Google. arXiv:2406.19108. | 2024 |
+### The post-game loop is the product
 
-## How It Works
+After a game, you should be able to move straight into:
+- mistake review
+- plain-language coach feedback
+- puzzle generation from your errors
+- study/review material for spaced repetition (Anki!)
+- plain language game-rule generation
+- anki-style repeatition based on your puzzles/games
 
-Every demo follows the same pattern.
+This is the core experience.
 
-1. Read the paper.
-2. Implement the exact algorithm described.
-3. Audit the implementation against the source.
-4. Wrap it in a minimal dark UI with sliders and a canvas.
+### What is special here
 
-Each simulation runs entirely in the browser. No server, no WebGL, no WASM. Just `requestAnimationFrame` and typed arrays on a 2D canvas. Most simulations run at 30-60 fps on modern hardware.
+- **Anki-style chess memory loop**: important positions become review cards with spaced repetition so that your mistakes do not disappear after one game.
+- **LLM game-rule generation**: write rules in plain language, generate playable variants, and test them quickly.
+- **Play those variants with friends**: generated rules are not just text; they are meant to be played in social games and challenges.
+- **Chess-first UX**: no feed clutter, no content bloat, just simple board and progression.
 
-## Running Locally
+## Product Surfaces
+
+## Tech Stack
+
+- `React`
+- `Vite`
+- `React Router`
+- `Tailwind CSS`
+- `chess.js`
+- `react-chessboard`
+
+## Setup
+
+### Requirements
+- Node.js `20+`
+- npm `10+`
+
+### Run locally
 
 ```bash
-npx http-server -p 3000 -c-1
+cd ochess-app
+npm install
+npm run dev
 ```
 
-Then open http://localhost:3000. The `-c-1` flag disables caching so you always get fresh files.
+### Production build
+
+```bash
+cd ochess-app
+npm run build
+npm run preview
+```
 
 ## Project Structure
 
-```
-emergentSystems/
-  index.html              Landing page with preview thumbnails
-  style.css               Shared dark theme (Manrope + Inter + JetBrains Mono)
-  particle-life/           Each demo is self-contained
-    index.html              Info bar + canvas + controls
-    sim.js                  Simulation engine
-  turmites/
-  mnca/
-  ... (23 demo folders)
-  docs/
-    roadmap.md             Future demos and expansion areas
-```
+- `ochess-app/` - frontend app
+- `docs/` - product and architecture notes
+- `.github/` - CI and contribution workflows
 
-Each demo folder is completely independent. No shared JS libraries, no imports between demos. You can copy any folder and it works standalone with just the CSS.
+## Roadmap Direction
 
-## Paper Accuracy
+- Stronger game-to-review automation
+- Better player profiling and progression
+- More polished analysis and study flows
+- Collaboration-friendly chess tooling
 
-Every simulation was audited against its source paper. The info bar on each demo page links directly to the original research. Where the implementation simplifies or deviates from the paper, this is stated explicitly in the description.
+## Contributing
 
-Simulations that were audited and corrected include fixes for boundary conditions (Sandpile), ring offset decoding (MNCA), position wrapping (Particle Life), direction semantics (Paterson's Worms), execution order (Computational Life), and mass conservation (previously removed Flow-Lenia).
+Contributions are welcome.
 
-## References
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/your-feature`)
+3. Commit your changes
+4. Open a PR
 
-<details>
-<summary>Full citation list (25 papers)</summary>
+Read `CONTRIBUTING.md` for full guidelines.
 
-- Ventrella, Jeffrey (2005). Clusters.
-- Langton, Chris (1986). Langton's Ant.
-- Schmickl et al. (2016). How a life-like system emerges from a simple particle motion law. Scientific Reports.
-- Sayama, Hiroki (2009). Swarm Chemistry. Artificial Life 15(1).
-- Slackermanz (2014). Multiple Neighborhood Cellular Automata.
-- McCabe, Jonathan (2010). Cyclic Symmetric Multi-Scale Turing Patterns. Bridges.
-- Paterson, Mike and Conway, John (1971). Paterson's Worms.
-- Witten and Sander (1981). Diffusion-Limited Aggregation.
-- Jones, Jeff (2010). Physarum Transport Networks. Artificial Life.
-- Bak, Tang, Wiesenfeld (1987). Self-Organized Criticality.
-- Turing, Alan (1952). The Chemical Basis of Morphogenesis.
-- Gray and Scott (1983). Autocatalytic reactions in an isothermal CSTR.
-- Miotti, Niklasson, Randazzo, Mordvintsev (2025). Differentiable Logic Cellular Automata. Google.
-- Greenberg and Hastings (1978). Spatial patterns for discrete models of diffusion.
-- Fisch, Gravner, Griffeath (1991). Cyclic cellular automata phase diagram.
-- Chatterjee et al. (2025). Emergent complex phases in a discrete flocking model. Communications Physics.
-- Niemeyer, Pietronero, Wiesmann (1984). Fractal dimension of dielectric breakdown.
-- Langton, Christopher (1984). Self-reproduction in cellular automata.
-- Eden, Murray (1961). Two-dimensional growth process.
-- Wilkinson and Willemsen (1983). Invasion percolation.
-- Zhu et al. (2026). Neural Particle Automata. arXiv:2601.16096.
-- Sakana AI (2024). ASAL, Automating the Search for Artificial Life.
-- Plantec et al. (2024). Evolving Game of Life. arXiv:2406.13383.
-- Sayama, Hiroki (1999). Evoloops.
-- Aguera y Arcas et al. (2024). Computational Life. arXiv:2406.19108.
+## Security
 
-</details>
+Please follow `SECURITY.md` for responsible vulnerability reporting.
 
 ## License
 
-[MIT](LICENSE)
+Licensed under `Apache-2.0`.  
+See `LICENSE` and `NOTICE`.
+
+Reuse is free, including commercial use, as long as license/attribution notices are preserved.
 
 ---
 
 <div align="center">
-<sub>Built by <a href="https://github.com/Ijtihed">Ijtihed</a></sub>
+  <p>Made with intent by <strong>Ijtihed</strong></p>
+  <p><em>Chess-first. Quietly premium.</em></p>
 </div>
