@@ -27,10 +27,6 @@
                     <h4>Applications</h4>
                     <p>Automated discovery of self-organizing rules for pattern generation and engineering. Bridges neural networks and symbolic computation, specify what you want and let the system find how.</p>
                 </div>
-                <div>
-                    <h4>How To Use</h4>
-                    <p>Draw or randomize a target pattern on the left. Click learn to evolve matching rules. Click run to animate the best discovered rule on the right canvas.</p>
-                </div>
             </div>
         </section>
 
@@ -43,6 +39,9 @@
                 <span class="panel-label">learned rule</span>
                 <canvas id="runCanvas" width="480" height="480"></canvas>
             </div>
+        </div>
+        <div class="usage">
+            <span class="key">draw</span> a target pattern on the left<span class="sep">·</span>click <span class="key">learn</span> to evolve matching rules<span class="sep">·</span>click <span class="key">run</span> to animate on the right
         </div>
         <div class="controls">
             <div class="ctrl">
@@ -75,7 +74,6 @@
                 <span class="status" id="status">draw a target pattern</span>
             </div>
         </div>
-        <div class="hint">paint cells on the left · learn to evolve rules · run to animate on the right</div>
     </div>
     <script src="sim.js"></script>
 </body>

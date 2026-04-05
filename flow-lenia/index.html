@@ -27,15 +27,14 @@
                     <h4>Applications</h4>
                     <p>Artificial life and open-ended evolution research. Understanding biological ecosystems and species competition. Generative art producing organic, lifelike animations from simple continuous rules.</p>
                 </div>
-                <div>
-                    <h4>How To Use</h4>
-                    <p>Select a species and click to place organisms. Scroll to resize brush. Watch species interact and compete for space. The status bar shows total mass per species.</p>
-                </div>
             </div>
         </section>
 
         <div class="canvas-wrap">
             <canvas id="canvas"></canvas>
+        </div>
+        <div class="usage">
+            select <span class="key">species</span> and <span class="key">click</span> to place organisms<span class="sep">·</span><span class="key">scroll</span> to resize brush<span class="sep">·</span>watch species compete, status shows mass per species
         </div>
         <div class="controls">
             <div class="ctrl">
@@ -67,7 +66,6 @@
                 <span class="status" id="status">running</span>
             </div>
         </div>
-        <div class="hint">click to place organisms · scroll to change brush · watch species compete</div>
     </div>
     <script src="sim.js"></script>
 </body>
