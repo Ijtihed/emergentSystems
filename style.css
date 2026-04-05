@@ -177,12 +177,12 @@ a:hover {
 
 .fps {
     position: fixed;
-    top: 0.5rem;
-    right: 0.6rem;
+    bottom: 0.5rem;
+    right: 0.8rem;
     font-family: var(--font-mono);
     font-size: 0.6rem;
     font-weight: 400;
-    color: var(--text-dim);
+    color: var(--text-muted);
     letter-spacing: 0.05em;
     z-index: 100;
     pointer-events: none;
