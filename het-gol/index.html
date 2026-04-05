@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>heterogeneous evolving game of life . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=10">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Heterogeneous Evolving Game of Life</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p><a href="https://arxiv.org/html/2406.13383v1" target="_blank" rel="noopener noreferrer">Plantec et al., Evolving Game of Life, arXiv 2406.13383, 2024</a>. Standard GoL but each cell has its own birth and survival rule that mutates on reproduction. Rules themselves evolve, creating open-ended ecology.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Each cell stores its own B/S rule plus energy. When a cell reproduces, offspring inherit the parent rule with small random mutations. Different rule-species compete for territory and keep evolving. Color-coded by rule identity.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Open-ended evolution without explicit fitness. Studies how environmental pressure shapes emergent rule diversity. Shows that GoL convergence to still-lifes is an artifact of homogeneous rules.</p>
+                </div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            watch rules evolve and compete for territory<span class="sep">·</span><span class="key">mutation rate</span> controls how fast new species appear<span class="sep">·</span>color shows rule identity
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label for="mutationRate">mutation rate</label>
+                <input type="range" id="mutationRate" min="0" max="100" value="10">
+            </div>
+            <div class="ctrl">
+                <label for="energyGain">energy gain</label>
+                <input type="range" id="energyGain" min="1" max="100" value="30">
+            </div>
+            <div class="ctrl">
+                <label for="speed">speed</label>
+                <input type="range" id="speed" min="1" max="60" value="10">
+            </div>
+            <div class="ctrl">
+                <button type="button" id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button type="button" id="resetBtn">reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=10"></script>
+</body>
+</html>

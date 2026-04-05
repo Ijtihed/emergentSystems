@@ -88,6 +88,31 @@
                 <div class="card-title">Multi-Seed Growth</div>
                 <div class="card-desc">Competing crystals with fractal borders.</div>
             </a>
+            <a href="neural-particles/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="npa" width="72" height="72"></canvas>
+                <div class="card-title">Neural Particle Automata</div>
+                <div class="card-desc">Particles that learn self-organizing rules.</div>
+            </a>
+            <a href="particle-life-plus/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="plplus" width="72" height="72"></canvas>
+                <div class="card-title">Particle Life++</div>
+                <div class="card-desc">ASAL-discovered open-ended ecosystems.</div>
+            </a>
+            <a href="het-gol/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="hetgol" width="72" height="72"></canvas>
+                <div class="card-title">Evolving GoL</div>
+                <div class="card-desc">Per-cell rules that mutate and compete.</div>
+            </a>
+            <a href="evoloops/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="evoloop" width="72" height="72"></canvas>
+                <div class="card-title">Evoloops</div>
+                <div class="card-desc">Self-reproducing loops with Darwinian evolution.</div>
+            </a>
+            <a href="computational-life/index.html" class="demo-card">
+                <canvas class="demo-preview" data-sim="complife" width="72" height="72"></canvas>
+                <div class="card-title">Computational Life</div>
+                <div class="card-desc">Self-replicators emerging from random programs.</div>
+            </a>
         </div>
 
         <div class="landing-footer">
@@ -159,6 +184,20 @@
             } else if (sim === 'growth') {
                 const seeds=[[20,20],[50,40],[35,55]];const cols2=[[90,160,240],[230,100,80],[80,210,140]];
                 for(let i=0;i<S*S;i++){const x=i%S,y=(i/S)|0;let best=0,bestD=999;for(let s2=0;s2<3;s2++){const d=Math.sqrt((x-seeds[s2][0])**2+(y-seeds[s2][1])**2);if(d<bestD){bestD=d;best=s2;}}const c=cols2[best];const f=Math.max(0,1-bestD/40);px[i*4]=c[0]*f|0;px[i*4+1]=c[1]*f|0;px[i*4+2]=c[2]*f|0;px[i*4+3]=255;}
+                ctx.putImageData(img,0,0);
+            } else if (sim === 'npa' || sim === 'plplus') {
+                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
+                const cols3=[[90,160,240],[230,90,80],[80,210,140],[220,180,60]];
+                for(let t=0;t<4;t++){const cx=18+Math.random()*36,cy=18+Math.random()*36;for(let i=0;i<20;i++){ctx.fillStyle=`rgb(${cols3[t]})`;ctx.beginPath();ctx.arc(cx+(Math.random()-0.5)*15,cy+(Math.random()-0.5)*15,1+Math.random()*2,0,Math.PI*2);ctx.fill();}}
+            } else if (sim === 'hetgol') {
+                for(let i=0;i<S*S;i++){const v=Math.random()<0.3;const h=(Math.random()*360)|0;px[i*4]=v?80+Math.cos(h*Math.PI/180)*80|0:8;px[i*4+1]=v?80+Math.cos((h-120)*Math.PI/180)*80|0:8;px[i*4+2]=v?80+Math.cos((h-240)*Math.PI/180)*80|0:8;px[i*4+3]=255;}
+                ctx.putImageData(img,0,0);
+            } else if (sim === 'evoloop') {
+                ctx.fillStyle='#080808';ctx.fillRect(0,0,S,S);
+                ctx.strokeStyle='#c04040';ctx.lineWidth=2;ctx.strokeRect(S/2-8,S/2-8,16,16);ctx.strokeRect(S/2+5,S/2-12,10,10);
+                ctx.fillStyle='#2850a0';ctx.fillRect(S/2-6,S/2-6,12,12);ctx.fillRect(S/2+7,S/2-10,6,6);
+            } else if (sim === 'complife') {
+                for(let i=0;i<S*S;i++){const h=Math.random()*0xFFFFFF|0;px[i*4]=(h&0xFF)*0.3+30|0;px[i*4+1]=((h>>8)&0xFF)*0.3+30|0;px[i*4+2]=((h>>16)&0xFF)*0.3+40|0;px[i*4+3]=255;}
                 ctx.putImageData(img,0,0);
             } else if (sim === 'difflogic') {
                 for(let i=0;i<S*S;i++){const x=i%S,y=(i/S)|0;const v=((x+y)%8<4)?1:0;const b=v?180:15;px[i*4]=b*0.55;px[i*4+1]=b*0.6;px[i*4+2]=b*0.72;px[i*4+3]=255;}

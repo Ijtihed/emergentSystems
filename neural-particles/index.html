@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>neural particle automata . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=10">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Neural Particle Automata</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p><a href="https://arxiv.org/abs/2601.16096" target="_blank" rel="noopener noreferrer">Zhu et al., Neural Particle Automata, arXiv 2601.16096, January 2026</a>. Lagrangian generalization of Neural Cellular Automata. Each particle has continuous position and internal state, both updated by a shared learned rule. This demo uses hand-tuned interaction rules inspired by the paper's discovered dynamics.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Particles perceive neighbors within a radius, computing a local field from relative positions and states. Position and state updates are computed from this perception. Asynchronous Bernoulli sampling means not all particles update every frame.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Morphogenesis, point-cloud self-organization, particle-based texture synthesis. Demonstrates that NCA principles extend to Lagrangian particle systems.</p>
+                </div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="smooth"></canvas>
+        </div>
+        <div class="usage">
+            choose a <span class="key">preset</span> target behavior<span class="sep">·</span>adjust <span class="key">perception radius</span> and <span class="key">update rate</span><span class="sep">·</span><span class="key">random</span> to scatter particles
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label for="preset">preset</label>
+                <select id="preset">
+                    <option value="ring">ring</option>
+                    <option value="chase">chase</option>
+                    <option value="cell">cell</option>
+                    <option value="cluster">cluster</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label for="perceptionRadius">perception radius</label>
+                <input type="range" id="perceptionRadius" min="1" max="200" value="80">
+            </div>
+            <div class="ctrl">
+                <label for="updateRate">update rate</label>
+                <input type="range" id="updateRate" min="1" max="100" value="50">
+            </div>
+            <div class="ctrl">
+                <button type="button" id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button type="button" id="resetBtn">reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=10"></script>
+</body>
+</html>

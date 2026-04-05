@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>particle life plus . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=10">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Particle Life++ (ASAL)</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p><a href="https://pub.sakana.ai/asal/" target="_blank" rel="noopener noreferrer">Sakana AI, ASAL, Automating the Search for Artificial Life with Foundation Models, 2024</a>. <a href="https://github.com/SakanaAI/asal" target="_blank" rel="noopener noreferrer">GitHub</a>. Foundation models automatically discovered Particle Life configurations producing open-ended ecosystems with caterpillars, chasers, and pulsating organisms.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Extended Particle Life with richer interaction functions. Each type pair has attraction, repulsion zone, and interaction shape parameters. ASAL-discovered configurations produce agentic patterns not found by manual search.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Open-ended artificial life, automated discovery of emergent systems, foundation model-guided parameter search.</p>
+                </div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="smooth"></canvas>
+        </div>
+        <div class="usage">
+            choose an <span class="key">ASAL-discovered preset</span><span class="sep">·</span><span class="key">random</span> explores the extended parameter space
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label for="preset">preset</label>
+                <select id="preset">
+                    <option value="caterpillar">caterpillar</option>
+                    <option value="chaser">chaser</option>
+                    <option value="pulsating">pulsating</option>
+                    <option value="ecosystem">ecosystem</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label for="typesCount">types</label>
+                <select id="typesCount">
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <button type="button" id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button type="button" id="resetBtn">reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=10"></script>
+</body>
+</html>

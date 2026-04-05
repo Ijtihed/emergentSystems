@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>computational life . emergent systems</title>
+    <link rel="stylesheet" href="../style.css?v=10">
+</head>
+<body>
+    <div class="demo-page">
+        <header class="demo-header">
+            <a href="../index.html" class="back">← back</a>
+            <span class="demo-title">Computational Life</span>
+        </header>
+        <section class="info-bar">
+            <div class="info-grid">
+                <div>
+                    <h4>Origin</h4>
+                    <p><a href="https://arxiv.org/abs/2406.19108" target="_blank" rel="noopener noreferrer">Aguera y Arcas et al., Computational Life, arXiv 2406.19108, Google, 2024</a>. Random programs on a grid spontaneously evolve into self-replicators without any fitness function. The most profound demonstration of emergent life from simple computation.</p>
+                </div>
+                <div>
+                    <h4>How It Works</h4>
+                    <p>Each cell contains a tiny program from a minimal instruction set. Programs execute, read and write to neighboring cells, and occasionally copy themselves. Starting from random program soup, self-replicating programs spontaneously emerge and dominate.</p>
+                </div>
+                <div>
+                    <h4>Applications</h4>
+                    <p>Origins of life research, understanding how self-replication emerges from random computation, bridging artificial life and theoretical computer science.</p>
+                </div>
+            </div>
+        </section>
+        <div class="canvas-wrap">
+            <canvas id="canvas" class="pixelated"></canvas>
+        </div>
+        <div class="usage">
+            watch random noise coalesce into colored blooms as self-replicators emerge<span class="sep">·</span><span class="key">mutation rate</span> controls variation<span class="sep">·</span>color shows program identity
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label for="mutationRate">mutation rate</label>
+                <input type="range" id="mutationRate" min="0" max="100" value="15">
+            </div>
+            <div class="ctrl">
+                <label for="stepsPerFrame">steps per frame</label>
+                <input type="range" id="stepsPerFrame" min="1" max="500" value="50">
+            </div>
+            <div class="ctrl">
+                <button type="button" id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button type="button" id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">ready</span>
+            </div>
+        </div>
+    </div>
+    <script src="sim.js?v=10"></script>
+</body>
+</html>
