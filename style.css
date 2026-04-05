@@ -350,6 +350,16 @@ button.active {
     color: var(--accent);
 }
 
+@keyframes flash-hint {
+    0%, 100% { border-color: var(--border); color: var(--text-muted); }
+    25%, 75% { border-color: #c44; color: #e55; }
+    50% { border-color: #e55; color: #f66; }
+}
+
+button.flash-hint {
+    animation: flash-hint 0.6s ease 2;
+}
+
 select {
     font-family: var(--font-mono);
     font-size: 0.65rem;

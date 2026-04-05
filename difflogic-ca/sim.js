@@ -207,9 +207,19 @@
         genCount++;
     }
 
+    function flashBtn(id) {
+        const btn = document.getElementById(id);
+        btn.classList.remove('flash-hint');
+        void btn.offsetWidth;
+        btn.classList.add('flash-hint');
+        btn.addEventListener('animationend', () => btn.classList.remove('flash-hint'), { once: true });
+    }
+
     async function learn() {
         if (target.reduce((a, b) => a + b, 0) === 0) {
             statusEl.textContent = 'draw something first';
+            flashBtn('drawBtn');
+            flashBtn('randomBtn');
             return;
         }
         learning = true;
@@ -246,6 +256,7 @@
     function startRun() {
         if (!bestRule) {
             statusEl.textContent = 'learn rules first';
+            flashBtn('learnBtn');
             return;
         }
         learning = false;
