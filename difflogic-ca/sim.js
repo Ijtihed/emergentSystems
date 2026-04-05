@@ -1,4 +1,17 @@
 (() => {
+    const fpsEl = document.createElement('div');
+    fpsEl.className = 'fps';
+    document.body.appendChild(fpsEl);
+    let _ft = performance.now(), _fc = 0;
+    function tickFps() {
+        _fc++;
+        const now = performance.now();
+        if (now - _ft >= 500) {
+            fpsEl.textContent = ((_fc / (now - _ft)) * 1000).toFixed(0) + ' fps';
+            _fc = 0; _ft = now;
+        }
+    }
+
     const drawCanvas = document.getElementById('drawCanvas');
     const runCanvas = document.getElementById('runCanvas');
     const drawCtx = drawCanvas.getContext('2d');
@@ -244,6 +257,7 @@
 
     function animate() {
         if (!running) return;
+        tickFps();
         grid = runCA(grid, bestRule, 1);
         generation++;
         renderGrid(runCtx, grid, CELL_RUN);

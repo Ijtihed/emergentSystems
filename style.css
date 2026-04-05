@@ -175,6 +175,19 @@ a:hover {
     color: var(--text-muted);
 }
 
+.fps {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    z-index: 100;
+    pointer-events: none;
+}
+
 /* ── Info Bar (always visible) ── */
 
 .info-bar {

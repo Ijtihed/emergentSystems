@@ -1,4 +1,17 @@
 (() => {
+    const fpsEl = document.createElement('div');
+    fpsEl.className = 'fps';
+    document.body.appendChild(fpsEl);
+    let _ft = performance.now(), _fc = 0;
+    function tickFps() {
+        _fc++;
+        const now = performance.now();
+        if (now - _ft >= 500) {
+            fpsEl.textContent = ((_fc / (now - _ft)) * 1000).toFixed(0) + ' fps';
+            _fc = 0; _ft = now;
+        }
+    }
+
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     const SIZE = 256;
@@ -268,6 +281,7 @@
 
     let frameCount = 0;
     function loop() {
+        tickFps();
         if (!paused) {
             step();
             frameCount++;
