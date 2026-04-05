@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>Paterson's Worms . emergent systems</title>
+    <title>paterson's worms . emergent systems</title>
     <link rel="stylesheet" href="../style.css?v=8">
-    <script src="../device-gate.js?v=1" defer></script>
 </head>
 <body>
     <div class="demo-page">
@@ -17,15 +16,40 @@
         <section class="info-bar">
             <div class="info-grid">
                 <div><h4>Origin</h4><p><a href="https://en.wikipedia.org/wiki/Paterson%27s_worms" target="_blank">Mike Paterson and John Conway, 1971</a>. First described by <a href="https://mathpuzzle.com/MAA/Worms.html" target="_blank">Martin Gardner in Scientific American, 1973</a>. <a href="https://mathworld.wolfram.com/PatersonsWorms.html" target="_blank">MathWorld</a>. One variant's fate is still mathematically unknown.</p></div>
-                <div><h4>How It Works</h4><p>A worm moves on a triangular lattice with 6 directions per node. At each intersection, it checks which paths have been eaten. Based on a fixed rule table, it chooses the next uneaten direction. Different rule tables produce spirals, space-fillers, or worms that run millions of steps then halt.</p></div>
-                <div><h4>Applications</h4><p>Open mathematical problems in computability. Produces hexagonal snowflake-like trail patterns unique to the triangular grid. EA published a game based on this in 1983.</p></div>
+                <div><h4>How It Works</h4><p>A worm moves on a triangular lattice with 6 directions per node. At each intersection, it checks which paths have been eaten. Based on a fixed rule table, it chooses the next uneaten direction. Different rule tables produce spirals, space-fillers, or worms that halt after millions of steps.</p></div>
+                <div><h4>Applications</h4><p>Open mathematical problems in computability. Produces hexagonal snowflake-like trail patterns unique to the triangular grid.</p></div>
             </div>
         </section>
         <div class="canvas-wrap">
             <canvas id="canvas" class="pixelated"></canvas>
         </div>
-        <div class="usage">Choose a preset worm species. <span class="key">Speed</span> controls steps per frame. <span class="key">Random rule</span> generates unexplored worm types.</div>
-        <div class="controls">Preset selector with <span class="key">space-filler</span>, <span class="key">spiral</span>, <span class="key">unknown fate</span>, <span class="key">snowflake</span>. <span class="key">Speed</span> slider. Buttons <span class="key">random rule</span>, <span class="key">reset</span>.</div>
+        <div class="usage">
+            choose a <span class="key">preset</span> worm species<span class="sep">·</span><span class="key">speed</span> controls steps per frame<span class="sep">·</span><span class="key">random</span> generates unexplored worm types
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>preset</label>
+                <select id="preset">
+                    <option value="space-filler">space-filler</option>
+                    <option value="spiral" selected>spiral</option>
+                    <option value="unknown-fate">unknown fate</option>
+                    <option value="snowflake">snowflake</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label>speed</label>
+                <input type="range" id="speed" min="1" max="50" value="5">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random rule</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">running</span>
+            </div>
+        </div>
     </div>
     <script src="sim.js?v=8"></script>
 </body>

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>Swarm Chemistry . emergent systems</title>
+    <title>swarm chemistry . emergent systems</title>
     <link rel="stylesheet" href="../style.css?v=8">
-    <script src="../device-gate.js?v=1" defer></script>
 </head>
 <body>
     <div class="demo-page">
@@ -17,15 +16,40 @@
         <section class="info-bar">
             <div class="info-grid">
                 <div><h4>Origin</h4><p><a href="https://direct.mit.edu/artl/article-abstract/15/1/105/2623/Swarm-Chemistry" target="_blank">Hiroki Sayama, Swarm Chemistry, Artificial Life 15(1), 2009</a>. Won ISAL Outstanding Paper of the Decade award. <a href="http://bingweb.binghamton.edu/~sayama/SwarmChemistry/" target="_blank">Sayama's page</a>.</p></div>
-                <div><h4>How It Works</h4><p>Multiple species of Boids-like particles, each with its own separation, alignment, cohesion, max speed, and perception radius. Particles interact across species, producing orbiting rings, pulsing blobs, and cell-like membranes. Breed favorites to discover new lifeforms.</p></div>
-                <div><h4>Applications</h4><p>Artificial life and morphogenesis research. Interactive evolutionary computation for discovering self-organizing swarm patterns.</p></div>
+                <div><h4>How It Works</h4><p>Multiple species of Boids-like particles, each with its own separation, alignment, cohesion, max speed, and perception radius. Particles interact across species using their own parameters, producing orbiting rings, pulsing blobs, and cell-like membranes.</p></div>
+                <div><h4>Applications</h4><p>Artificial life and morphogenesis research. Interactive evolutionary computation for discovering self-organizing swarm patterns. Breed favorites to discover new lifeforms.</p></div>
             </div>
         </section>
         <div class="canvas-wrap">
             <canvas id="canvas" class="smooth"></canvas>
         </div>
-        <div class="usage"><span class="key">Random</span> generates new species parameters. <span class="key">Breed</span> mixes two random species into a new one. <span class="key">Click</span> to attract particles.</div>
-        <div class="controls"><span class="key">Species count</span> (2 to 5, default 3). Buttons <span class="key">breed</span>, <span class="key">random</span>, <span class="key">reset</span>. <span class="key">Friction</span> slider.</div>
+        <div class="usage">
+            <span class="key">random</span> generates new species<span class="sep">·</span><span class="key">breed</span> mixes two species with mutation<span class="sep">·</span><span class="key">click</span> to attract particles
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>species</label>
+                <select id="numTypes">
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label>friction</label>
+                <input type="range" id="friction" min="1" max="20" value="5">
+            </div>
+            <div class="ctrl">
+                <button id="breedBtn">breed</button>
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
     </div>
     <script src="sim.js?v=8"></script>
 </body>

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>Diffusion-Limited Aggregation . emergent systems</title>
+    <title>dla . emergent systems</title>
     <link rel="stylesheet" href="../style.css?v=8">
-    <script src="../device-gate.js?v=1" defer></script>
 </head>
 <body>
     <div class="demo-page">
@@ -16,16 +15,46 @@
         </header>
         <section class="info-bar">
             <div class="info-grid">
-                <div><h4>Origin</h4><p><a href="https://en.wikipedia.org/wiki/Diffusion-limited_aggregation" target="_blank">Witten and Sander, 1981</a>. Produces Brownian tree fractals with dimension approximately 1.71. <a href="https://paulbourke.net/fractals/dla/" target="_blank">Paul Bourke reference</a>. <a href="https://github.com/jasonwebb/2d-diffusion-limited-aggregation-experiments" target="_blank">Jason Webb experiments</a>.</p></div>
-                <div><h4>How It Works</h4><p>One seed pixel at the center. Random walkers are released from edges. Each walker does a random walk until it touches the existing cluster, then sticks permanently. Results look like lightning bolts, mineral dendrites, frost, and river deltas.</p></div>
+                <div><h4>Origin</h4><p><a href="https://en.wikipedia.org/wiki/Diffusion-limited_aggregation" target="_blank">Witten and Sander, 1981</a>. Brownian tree fractals with dimension approximately 1.71. <a href="https://paulbourke.net/fractals/dla/" target="_blank">Paul Bourke reference</a>. <a href="https://github.com/jasonwebb/2d-diffusion-limited-aggregation-experiments" target="_blank">Jason Webb experiments</a>.</p></div>
+                <div><h4>How It Works</h4><p>One seed pixel at the center. Random walkers are released from edges, doing a random walk until they touch the cluster, then stick permanently. Results look like lightning bolts, mineral dendrites, frost, and river deltas.</p></div>
                 <div><h4>Applications</h4><p>Models crystal growth, electrodeposition, mineral dendrites, lightning paths, river delta formation, and bacterial colony growth.</p></div>
             </div>
         </section>
         <div class="canvas-wrap">
             <canvas id="canvas" class="pixelated"></canvas>
         </div>
-        <div class="usage"><span class="key">Click</span> to place seed points. <span class="key">Walkers per frame</span> controls growth speed. <span class="key">Bias</span> adds directional preference like gravity.</div>
-        <div class="controls"><span class="key">Walkers per frame</span> slider (1 to 20). <span class="key">Stickiness</span> slider (50 to 100%). <span class="key">Bias</span> direction none, up, down, left, right. Buttons <span class="key">reset</span>, <span class="key">multi-seed</span>.</div>
+        <div class="usage">
+            <span class="key">click</span> to place seed points<span class="sep">·</span><span class="key">walkers</span> controls growth speed<span class="sep">·</span><span class="key">bias</span> adds directional preference
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>walkers</label>
+                <input type="range" id="walkers" min="1" max="20" value="5">
+            </div>
+            <div class="ctrl">
+                <label>stickiness</label>
+                <input type="range" id="stickiness" min="50" max="100" value="100">
+            </div>
+            <div class="ctrl">
+                <label>bias</label>
+                <select id="bias">
+                    <option value="none">none</option>
+                    <option value="up">up</option>
+                    <option value="down">down</option>
+                    <option value="left">left</option>
+                    <option value="right">right</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <button id="multiSeedBtn">multi-seed</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+            <div class="ctrl">
+                <span class="status" id="status">growing</span>
+            </div>
+        </div>
     </div>
     <script src="sim.js?v=8"></script>
 </body>

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>Primordial Particle Systems . emergent systems</title>
+    <title>primordial particles . emergent systems</title>
     <link rel="stylesheet" href="../style.css?v=8">
-    <script src="../device-gate.js?v=1" defer></script>
 </head>
 <body>
     <div class="demo-page">
@@ -24,8 +23,33 @@
         <div class="canvas-wrap">
             <canvas id="canvas" class="smooth"></canvas>
         </div>
-        <div class="usage">Adjust <span class="key">alpha</span> <span class="sep">·</span> <span class="key">beta</span> to explore different behaviors. <span class="key">Random</span> for new particle arrangement.</div>
-        <div class="controls">Sliders for <span class="key">alpha</span> (100 to 360, default 180), <span class="key">beta</span> (1 to 40, default 17), <span class="key">speed v</span>, <span class="key">radius r</span>. Buttons <span class="key">random</span>, <span class="key">reset</span>.</div>
+        <div class="usage">
+            adjust <span class="key">alpha</span> and <span class="key">beta</span> to explore different behaviors<span class="sep">·</span><span class="key">random</span> for new particle arrangement
+        </div>
+        <div class="controls">
+            <div class="ctrl">
+                <label>alpha</label>
+                <input type="range" id="alpha" min="100" max="360" value="180">
+            </div>
+            <div class="ctrl">
+                <label>beta</label>
+                <input type="range" id="beta" min="1" max="40" value="17">
+            </div>
+            <div class="ctrl">
+                <label>speed</label>
+                <input type="range" id="speed" min="20" max="150" value="67">
+            </div>
+            <div class="ctrl">
+                <label>radius</label>
+                <input type="range" id="radius" min="2" max="15" value="5">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
+            </div>
+            <div class="ctrl">
+                <button id="resetBtn">reset</button>
+            </div>
+        </div>
     </div>
     <script src="sim.js?v=8"></script>
 </body>
