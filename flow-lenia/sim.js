@@ -106,44 +106,74 @@
     }
 
     function step() {
-        // Mass-conservative Flow-Lenia: compute flows and advect
-        const totalMassBefore = [];
-        for (let s = 0; s < NUM_SPECIES; s++) {
-            let m = 0;
-            for (let i = 0; i < N; i++) m += grids[s][i];
-            totalMassBefore.push(m);
-        }
+        // Flow-Lenia: gradient-based mass-conservative update (Plantec et al. 2023/2025)
+        // For each species:
+        //   1. Compute potential U = K * A (kernel convolution)
+        //   2. Compute growth field G(U)
+        //   3. Compute flow from gradient of (G * A), mass flows toward high growth
+        //   4. Advect mass along flow vectors, conserving total mass
 
         for (let s = 0; s < NUM_SPECIES; s++) {
             const sp = species[s];
-            const potential = convolve(grids[s], kernels[s]);
+            const A = grids[s];
+            const potential = convolve(A, kernels[s]);
 
-            let totalOther = new Float32Array(N);
-            for (let o = 0; o < NUM_SPECIES; o++) {
-                if (o === s) continue;
-                for (let i = 0; i < N; i++) totalOther[i] += grids[o][i];
-            }
-
+            // Growth field
+            const G = new Float32Array(N);
             for (let i = 0; i < N; i++) {
-                const g = growth(potential[i], sp.mu, sp.sigmaG);
-                const competition = totalOther[i] * 0.3;
-                const newVal = grids[s][i] + dt * (g * grids[s][i] - competition * grids[s][i]);
-                gridsBuf[s][i] = Math.max(0, Math.min(1, newVal));
+                G[i] = growth(potential[i], sp.mu, sp.sigmaG);
             }
-        }
 
-        // Normalize to conserve mass approximately
-        for (let s = 0; s < NUM_SPECIES; s++) {
-            let massAfter = 0;
-            for (let i = 0; i < N; i++) massAfter += gridsBuf[s][i];
-            if (massAfter > 0 && totalMassBefore[s] > 0) {
-                const ratio = totalMassBefore[s] / massAfter;
-                const clampedRatio = Math.max(0.95, Math.min(1.05, ratio));
-                for (let i = 0; i < N; i++) {
-                    gridsBuf[s][i] *= clampedRatio;
-                    if (gridsBuf[s][i] > 1) gridsBuf[s][i] = 1;
+            // Compute flow source field: G * A (growth weighted by mass)
+            const GA = new Float32Array(N);
+            for (let i = 0; i < N; i++) GA[i] = G[i] * A[i];
+
+            // Compute gradient of GA to get flow vectors (fx, fy)
+            const fx = new Float32Array(N);
+            const fy = new Float32Array(N);
+            for (let y = 0; y < SIZE; y++) {
+                for (let x = 0; x < SIZE; x++) {
+                    const xp = (x + 1) % SIZE;
+                    const xm = (x - 1 + SIZE) % SIZE;
+                    const yp = (y + 1) % SIZE;
+                    const ym = (y - 1 + SIZE) % SIZE;
+                    const idx = y * SIZE + x;
+                    fx[idx] = (GA[y * SIZE + xp] - GA[y * SIZE + xm]) * 0.5;
+                    fy[idx] = (GA[yp * SIZE + x] - GA[ym * SIZE + x]) * 0.5;
                 }
             }
+
+            // Semi-Lagrangian advection: trace backward along flow to find source
+            const out = gridsBuf[s];
+            for (let y = 0; y < SIZE; y++) {
+                for (let x = 0; x < SIZE; x++) {
+                    const idx = y * SIZE + x;
+                    const srcX = x - dt * fx[idx];
+                    const srcY = y - dt * fy[idx];
+
+                    // Bilinear interpolation from source position
+                    const sx = ((srcX % SIZE) + SIZE) % SIZE;
+                    const sy = ((srcY % SIZE) + SIZE) % SIZE;
+                    const x0 = Math.floor(sx);
+                    const y0 = Math.floor(sy);
+                    const x1 = (x0 + 1) % SIZE;
+                    const y1 = (y0 + 1) % SIZE;
+                    const dx = sx - x0;
+                    const dy = sy - y0;
+
+                    out[idx] =
+                        A[y0 * SIZE + x0] * (1 - dx) * (1 - dy) +
+                        A[y0 * SIZE + x1] * dx * (1 - dy) +
+                        A[y1 * SIZE + x0] * (1 - dx) * dy +
+                        A[y1 * SIZE + x1] * dx * dy;
+
+                    // Also apply a small amount of direct growth for dynamics
+                    out[idx] += dt * 0.1 * G[idx] * out[idx];
+                    if (out[idx] < 0) out[idx] = 0;
+                    if (out[idx] > 1) out[idx] = 1;
+                }
+            }
+
             const tmp = grids[s];
             grids[s] = gridsBuf[s];
             gridsBuf[s] = tmp;

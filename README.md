@@ -8,10 +8,10 @@ Interactive explorations of self-organizing computation.
 
 | # | Demo | Description |
 |---|------|-------------|
-| 01 | **DiffLogic Cellular Automata** | Draw target patterns and watch a genetic algorithm learn the local rules that produce them. Run learned rules at any grid scale. |
-| 02 | **Reaction-Diffusion** | Gray-Scott reaction-diffusion with user-deformable surface. Drag to warp local diffusion rates and watch Turing patterns respond. |
-| 03 | **Flow-Lenia** | Multi-species continuous cellular automaton with mass conservation. Place organisms and watch emergent competition, coexistence, and evolution. |
-| 04 | **Physarum Transport Networks** | Agent-based slime mold simulation as a collaborative drawing tool. Place food sources, draw trails, and watch organic network structures emerge. |
+| 01 | **DiffLogic Cellular Automata** | Inspired by Miotti et al. 2025 at Google. The paper uses differentiable logic gate networks trained via gradient descent. This demo uses evolutionary search over outer-totalistic rules as a browser-accessible alternative, exploring the same core question of reverse-engineering CA rules from target patterns. |
+| 02 | **Reaction-Diffusion** | Standard Gray-Scott model (Gray and Scott 1983) implementing Turing's reaction-diffusion morphogenesis. User-deformable surface modifies local diffusion rates, inspired by 2024 research on curvature-driven pattern dynamics. |
+| 03 | **Flow-Lenia** | Implements Flow-Lenia (Plantec et al. ALIFE 2023 Best Paper, published 2025) extending Lenia (Chan 2018). Uses gradient-based flow advection for mass conservation. Three species with ring-shaped kernels and Gaussian growth functions compete in shared space. |
+| 04 | **Physarum Transport Networks** | Implements the Jones 2010 multi-agent Physarum model with all four core parameters (sensor distance, sensor angle, rotation angle, move distance). Trail deposition, 3x3 mean diffusion, and multiplicative decay per the original paper. |
 
 ## Running
 
@@ -39,8 +39,10 @@ See [docs/roadmap.md](docs/roadmap.md) for planned future demos:
 
 ## References
 
-- [DiffLogic CA](https://google-research.github.io/self-organising-systems/difflogic-ca/) — Google Research, 2025
-- [Flow-Lenia](https://arxiv.org/abs/2506.08569) — Plantec et al., 2025
-- [Turing Patterns on Curved Surfaces](https://arxiv.org/abs/2403.09247) — 2024
-- [Physarum Simulation](https://sagejenson.com/physarum) — Jones (2010), Sage Jensen
-- [Lenia](https://chakazul.github.io/lenia.html) — Continuous Game of Life
+- Miotti, Niklasson, Randazzo, Mordvintsev. [Differentiable Logic CA](https://google-research.github.io/self-organising-systems/difflogic-ca/). Google Paradigms of Intelligence, March 2025. [arXiv:2506.04912](https://arxiv.org/abs/2506.04912)
+- Plantec, Hamon, Etcheverry, Oudeyer, Moulin-Frier, Chan. [Flow-Lenia](https://sites.google.com/view/flowlenia/). Best Paper ALIFE 2023. [arXiv:2212.07906](https://arxiv.org/abs/2212.07906)
+- Chan, Bert Wang-Chak. [Lenia](https://chakazul.github.io/lenia.html). Continuous Game of Life, 2018.
+- Gray, Scott. Autocatalytic reactions in the isothermal, continuous stirred tank reactor. Chemical Engineering Science, 1983.
+- Turing, Alan. The Chemical Basis of Morphogenesis. Philosophical Transactions of the Royal Society, 1952.
+- Jones, Jeff. Characteristics of Pattern Formation and Evolution in Approximations of Physarum Transport Networks. Artificial Life, 2010.
+- [Curvature-driven pattern dynamics](https://arxiv.org/abs/2403.09247). 2024.

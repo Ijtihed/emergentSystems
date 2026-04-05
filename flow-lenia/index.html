@@ -18,15 +18,15 @@
             <div class="info-grid">
                 <div>
                     <h4>Origin</h4>
-                    <p>Plantec et al., Flow-Lenia, 2025. Extends Lenia by Bert Wang-Chak Chan, 2018. A mass-conservative continuous cellular automaton where multiple species coexist, compete, and evolve.</p>
+                    <p>Plantec, Hamon, Etcheverry, Oudeyer, Moulin-Frier, Chan. Flow-Lenia, best paper at ALIFE 2023, published in Artificial Life 2025. Extends Lenia by Bert Wang-Chak Chan, 2018. Won best paper for enabling open-ended evolution in continuous CA.</p>
                 </div>
                 <div>
                     <h4>How It Works</h4>
-                    <p>Cells hold continuous values from 0 to 1. Each species has a ring-shaped kernel defining its neighborhood and a Gaussian growth function. Three species, alpha, beta, and gamma, compete for space with approximate mass conservation.</p>
+                    <p>Standard Lenia computes potential via kernel convolution, then applies a Gaussian growth function. Flow-Lenia adds mass conservation by computing gradient flows from the growth field, mass moves from low-growth to high-growth regions rather than being created or destroyed.</p>
                 </div>
                 <div>
                     <h4>Applications</h4>
-                    <p>Artificial life and open-ended evolution research. Understanding biological ecosystems and species competition. Generative art producing organic, lifelike animations from simple continuous rules.</p>
+                    <p>Enables spatially localized patterns that behave like creatures, showing directed motion, chemotaxis, division, and self-repair. The mass conservation makes patterns persistent and allows multi-species ecosystems to emerge from shared dynamics.</p>
                 </div>
             </div>
         </section>

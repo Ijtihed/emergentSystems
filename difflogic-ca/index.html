@@ -18,15 +18,15 @@
             <div class="info-grid">
                 <div>
                     <h4>Origin</h4>
-                    <p>Google Research, Differentiable Logic Cellular Automata, Mordvintsev et al., March 2025. This demo uses a genetic algorithm to approximate the gradient-based rule learning approach from the paper.</p>
+                    <p>Inspired by Miotti, Niklasson, Randazzo, Mordvintsev at Google, March 2025. The paper trains logic gate circuits via gradient descent on continuous relaxations to learn CA rules. This demo uses evolutionary search as a browser-accessible alternative to their differentiable approach.</p>
                 </div>
                 <div>
                     <h4>How It Works</h4>
-                    <p>Binary CA with outer-totalistic rules. 18 bits define how each cell updates based on its state and neighbor count. A GA evolves populations of rules, testing which produce patterns closest to your target.</p>
+                    <p>The paper uses multi-bit cell states and networks of 16 possible logic gates trained end-to-end. This demo simplifies to 1-bit cells with outer-totalistic rules, where a genetic algorithm evolves the 18-bit rule table by testing which rules keep your target pattern stable under iteration.</p>
                 </div>
                 <div>
                     <h4>Applications</h4>
-                    <p>Automated discovery of self-organizing rules for pattern generation and engineering. Bridges neural networks and symbolic computation, specify what you want and let the system find how.</p>
+                    <p>The full DiffLogic approach enables learnable programmable matter and robust self-healing circuits. This demo explores the core idea, reverse-engineering local rules from desired global patterns, which is the central question the paper addresses.</p>
                 </div>
             </div>
         </section>
