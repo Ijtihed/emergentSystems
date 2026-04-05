@@ -23,7 +23,7 @@
     let Du = 0.21, Dv = 0.105;
     let feed = presets.coral.f;
     let kill = presets.coral.k;
-    let brushSize = 10;
+    let brushSize = 12;
     let mouseDown = false;
     let mouseRight = false;
 
@@ -201,6 +201,44 @@
     });
 
     document.getElementById('resetBtn').addEventListener('click', init);
+
+    function randomize() {
+        const names = Object.keys(presets);
+        const pick = presets[names[(Math.random() * names.length) | 0]];
+        setFeedKill(pick.f, pick.k);
+        u.fill(1.0);
+        v.fill(0.0);
+        deform.fill(0.0);
+        const numSeeds = 3 + (Math.random() * 7) | 0;
+        for (let i = 0; i < numSeeds; i++) {
+            seedAt(
+                40 + Math.random() * (SIZE - 80),
+                40 + Math.random() * (SIZE - 80),
+                6 + (Math.random() * 20) | 0
+            );
+        }
+        const numDeforms = (Math.random() * 6) | 0;
+        for (let i = 0; i < numDeforms; i++) {
+            const cx = (Math.random() * SIZE) | 0;
+            const cy = (Math.random() * SIZE) | 0;
+            const r = 15 + (Math.random() * 30) | 0;
+            const oldBrush = brushSize;
+            brushSize = r;
+            applyBrush(cx, cy, 'deform');
+            brushSize = oldBrush;
+        }
+        document.getElementById('preset').selectedIndex = -1;
+    }
+
+    document.getElementById('randomBtn').addEventListener('click', randomize);
+
+    // Info panel toggle
+    const infoToggle = document.getElementById('infoToggle');
+    const infoPanel = document.getElementById('infoPanel');
+    infoToggle.addEventListener('click', () => {
+        infoPanel.classList.toggle('open');
+        infoToggle.classList.toggle('open');
+    });
 
     setFeedKill(presets.coral.f, presets.coral.k);
 

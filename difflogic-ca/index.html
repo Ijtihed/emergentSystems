@@ -10,16 +10,42 @@
     <div class="demo-page">
         <header class="demo-header">
             <a href="../index.html" class="back">← back</a>
-            <span class="demo-title">DiffLogic Cellular Automata</span>
+            <div class="header-right">
+                <span class="demo-title">DiffLogic Cellular Automata</span>
+                <span class="info-toggle" id="infoToggle">info</span>
+            </div>
         </header>
+
+        <div class="info-panel" id="infoPanel">
+            <div class="info-inner">
+                <div class="info-section">
+                    <h3>Origin</h3>
+                    <p>Inspired by Google Research's "Differentiable Logic Cellular Automata" (March 2025), where discrete binary logic gate rules are learned via gradient descent to produce target patterns. The original paper uses differentiable relaxation; this demo uses a genetic algorithm to search the rule space — capturing the same idea of reverse-engineering CA rules from desired patterns.</p>
+                    <p class="paper-ref">Google Self-Organising Systems team (Alexander Mordvintsev et al.), 2025. No public interactive playground exists for the original paper yet.</p>
+                </div>
+                <div class="info-section">
+                    <h3>How It Works</h3>
+                    <p>A cellular automaton is a grid where each cell's next state depends only on its current state and its neighbors. Here, rules are "outer-totalistic" — the next state depends on the current state (alive/dead) and the count of alive neighbors (0-8). That's just 18 binary decisions defining a complete rule. A population of random rules is evolved: each is tested by running it from random initial conditions and comparing the result to your target pattern. The best rules survive, crossover, and mutate over generations.</p>
+                </div>
+                <div class="info-section">
+                    <h3>Applications</h3>
+                    <p>Automated discovery of self-organizing rules for engineering, pattern generation, and texture synthesis. Understanding how simple local rules produce global order. The broader DiffLogic approach enables learning discrete computation from continuous optimization — bridging neural networks and symbolic AI.</p>
+                </div>
+                <div class="info-section">
+                    <h3>How To Use</h3>
+                    <p><strong>Draw</strong> a target pattern on the left canvas (click and drag). Hit <strong>learn</strong> to start the genetic algorithm — watch the right canvas show the best rule found so far. Click <strong>run</strong> to animate the learned rule continuously from random initial conditions. Use <strong>random</strong> to generate an interesting target pattern automatically.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="dual-canvas">
             <div class="panel">
                 <span class="panel-label">target pattern</span>
-                <canvas id="drawCanvas" width="384" height="384"></canvas>
+                <canvas id="drawCanvas" width="480" height="480"></canvas>
             </div>
             <div class="panel">
                 <span class="panel-label">learned rule</span>
-                <canvas id="runCanvas" width="384" height="384"></canvas>
+                <canvas id="runCanvas" width="480" height="480"></canvas>
             </div>
         </div>
         <div class="controls">
@@ -28,6 +54,9 @@
             </div>
             <div class="ctrl">
                 <button id="eraseBtn">erase</button>
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
             </div>
             <div class="ctrl">
                 <button id="learnBtn">learn rules</button>
@@ -42,8 +71,8 @@
                 <label>grid</label>
                 <select id="gridSize">
                     <option value="32">32×32</option>
-                    <option value="48">48×48</option>
-                    <option value="64" selected>64×64</option>
+                    <option value="48" selected>48×48</option>
+                    <option value="64">64×64</option>
                 </select>
             </div>
             <div class="ctrl">

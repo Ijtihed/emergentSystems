@@ -10,10 +10,36 @@
     <div class="demo-page">
         <header class="demo-header">
             <a href="../index.html" class="back">← back</a>
-            <span class="demo-title">Physarum Transport Networks</span>
+            <div class="header-right">
+                <span class="demo-title">Physarum Transport Networks</span>
+                <span class="info-toggle" id="infoToggle">info</span>
+            </div>
         </header>
+
+        <div class="info-panel" id="infoPanel">
+            <div class="info-inner">
+                <div class="info-section">
+                    <h3>Origin</h3>
+                    <p>Based on the real slime mold <em>Physarum polycephalum</em>, which solves shortest-path and network optimization problems without any central brain. The organism grows transport networks between food sources that rival human-engineered highway systems.</p>
+                    <p class="paper-ref">Jeff Jones, "Characteristics of Pattern Formation and Evolution in Approximations of Physarum Transport Networks" — 2010, UWE Bristol. Popularized as generative art by Sage Jensen.</p>
+                </div>
+                <div class="info-section">
+                    <h3>How It Works</h3>
+                    <p>Thousands of virtual particles each follow three simple rules: sense the chemical trail ahead at three angles (left, center, right), turn toward the strongest signal, then move forward and deposit more trail. The trail diffuses and slowly decays. This positive feedback loop — deposit, sense, follow — creates self-reinforcing organic networks from pure local interactions.</p>
+                </div>
+                <div class="info-section">
+                    <h3>Applications</h3>
+                    <p>Network design and logistics optimization, bio-inspired computing, procedural art generation. Physarum-based algorithms have been used to model Tokyo's rail network, optimize supply chains, and explore maze-solving without any global pathfinding.</p>
+                </div>
+                <div class="info-section">
+                    <h3>How To Use</h3>
+                    <p><strong>Click</strong> to place food sources — agents will route toward them, forming organic network structures. <strong>Drag</strong> to paint continuous food trails. <strong>Right-click</strong> to clear an area. Adjust sensor angle, distance, and decay to change the emergent behavior. Hit <strong>random</strong> for a fresh configuration.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="canvas-wrap">
-            <canvas id="canvas"></canvas>
+            <canvas id="canvas" class="smooth"></canvas>
         </div>
         <div class="controls">
             <div class="ctrl">
@@ -31,6 +57,9 @@
             <div class="ctrl">
                 <label>decay</label>
                 <input type="range" id="decay" min="80" max="99" value="96">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
             </div>
             <div class="ctrl">
                 <button id="clearBtn">clear trails</button>

@@ -220,6 +220,49 @@
         initAgents();
     });
 
+    function randomize() {
+        trail.fill(0);
+        trailBuf.fill(0);
+        foods.length = 0;
+        const count = 3 + (Math.random() * 8) | 0;
+        for (let i = 0; i < count; i++) {
+            foods.push({
+                x: 60 + Math.random() * (W - 120),
+                y: 60 + Math.random() * (H - 120),
+                radius: 8 + (Math.random() * 18) | 0
+            });
+        }
+        agents.length = 0;
+        for (let i = 0; i < NUM_AGENTS; i++) {
+            const f = foods[(Math.random() * foods.length) | 0];
+            const a = Math.random() * Math.PI * 2;
+            const r = Math.random() * 120;
+            agents.push({
+                x: Math.max(0, Math.min(W - 1, f.x + Math.cos(a) * r)),
+                y: Math.max(0, Math.min(H - 1, f.y + Math.sin(a) * r)),
+                angle: Math.random() * Math.PI * 2
+            });
+        }
+        params.sensorAngle = (15 + Math.random() * 70) * Math.PI / 180;
+        params.sensorDist = 5 + Math.random() * 25;
+        params.turnSpeed = (10 + Math.random() * 70) * Math.PI / 180;
+        params.decayFactor = 0.88 + Math.random() * 0.1;
+        document.getElementById('sensorAngle').value = (params.sensorAngle * 180 / Math.PI) | 0;
+        document.getElementById('sensorDist').value = params.sensorDist | 0;
+        document.getElementById('turnSpeed').value = (params.turnSpeed * 180 / Math.PI) | 0;
+        document.getElementById('decay').value = (params.decayFactor * 100) | 0;
+    }
+
+    document.getElementById('randomBtn').addEventListener('click', randomize);
+
+    // Info panel toggle
+    const infoToggle = document.getElementById('infoToggle');
+    const infoPanel = document.getElementById('infoPanel');
+    infoToggle.addEventListener('click', () => {
+        infoPanel.classList.toggle('open');
+        infoToggle.classList.toggle('open');
+    });
+
     initAgents();
     loop();
 })();

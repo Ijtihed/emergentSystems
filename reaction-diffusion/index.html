@@ -10,10 +10,36 @@
     <div class="demo-page">
         <header class="demo-header">
             <a href="../index.html" class="back">← back</a>
-            <span class="demo-title">Reaction-Diffusion</span>
+            <div class="header-right">
+                <span class="demo-title">Reaction-Diffusion</span>
+                <span class="info-toggle" id="infoToggle">info</span>
+            </div>
         </header>
+
+        <div class="info-panel" id="infoPanel">
+            <div class="info-inner">
+                <div class="info-section">
+                    <h3>Origin</h3>
+                    <p>Alan Turing proposed reaction-diffusion as the mechanism behind biological pattern formation in his 1952 paper "The Chemical Basis of Morphogenesis" — his final major work. The Gray-Scott model shown here was formulated by Peter Gray and Stephen Scott in 1983 as a minimal two-chemical system that produces a stunning variety of patterns.</p>
+                    <p class="paper-ref">Recent work (2024-2025) shows that on curved surfaces, these patterns become propagating, oscillatory, or chaotic — which is what the deformation brush simulates here.</p>
+                </div>
+                <div class="info-section">
+                    <h3>How It Works</h3>
+                    <p>Two virtual chemicals, U and V, diffuse across a surface at different rates and react: U is consumed to produce V, while V naturally decays. Because V diffuses slower than U, local concentrations of V can sustain themselves by consuming surrounding U faster than it arrives — creating stable spots, stripes, and waves from a uniform initial state. The feed rate (f) controls how quickly U is replenished; the kill rate (k) controls how quickly V decays.</p>
+                </div>
+                <div class="info-section">
+                    <h3>Applications</h3>
+                    <p>Explains how leopard spots, zebrafish stripes, coral branching, and fingerprint ridges form in nature. Used in procedural texture generation for games and film, material science for self-assembling nanostructures, and computational morphogenesis research.</p>
+                </div>
+                <div class="info-section">
+                    <h3>How To Use</h3>
+                    <p><strong>Drag</strong> on the canvas to deform the surface — this warps local diffusion rates, causing patterns to distort, split, and go chaotic. <strong>Shift-click</strong> to seed new chemical V. <strong>Right-click</strong> to inhibit (erase patterns). Choose a <strong>preset</strong> for different pattern types. Hit <strong>random</strong> for a fresh configuration with random seeds and deformations.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="canvas-wrap">
-            <canvas id="canvas"></canvas>
+            <canvas id="canvas" class="smooth"></canvas>
         </div>
         <div class="controls">
             <div class="ctrl">
@@ -38,13 +64,16 @@
             </div>
             <div class="ctrl">
                 <label>brush</label>
-                <input type="range" id="brushSize" min="2" max="30" value="10">
+                <input type="range" id="brushSize" min="2" max="30" value="12">
+            </div>
+            <div class="ctrl">
+                <button id="randomBtn">random</button>
             </div>
             <div class="ctrl">
                 <button id="resetBtn">reset</button>
             </div>
         </div>
-        <div class="hint">click to seed chemical · drag to deform surface · right-click to add inhibitor</div>
+        <div class="hint">drag to deform surface · shift-click to seed · right-click to inhibit</div>
     </div>
     <script src="sim.js"></script>
 </body>

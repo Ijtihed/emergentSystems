@@ -4,7 +4,7 @@
     const drawCtx = drawCanvas.getContext('2d');
     const runCtx = runCanvas.getContext('2d');
 
-    let GRID = 64;
+    let GRID = 48;
     let CELL_DRAW, CELL_RUN;
     let target, grid, gridBuf;
     let mode = 'draw';
@@ -323,6 +323,74 @@
         GRID = +e.target.value;
         resize();
         initGrids();
+    });
+
+    function randomize() {
+        running = false;
+        learning = false;
+        if (animFrame) cancelAnimationFrame(animFrame);
+        target = new Uint8Array(GRID * GRID);
+        bestRule = null;
+
+        const style = Math.random();
+        if (style < 0.25) {
+            // Scattered clusters
+            const numClusters = 2 + (Math.random() * 5) | 0;
+            for (let c = 0; c < numClusters; c++) {
+                const cx = (Math.random() * GRID) | 0;
+                const cy = (Math.random() * GRID) | 0;
+                const cr = 2 + (Math.random() * (GRID / 5)) | 0;
+                for (let dy = -cr; dy <= cr; dy++) {
+                    for (let dx = -cr; dx <= cr; dx++) {
+                        if (dx * dx + dy * dy > cr * cr) continue;
+                        const x = (cx + dx + GRID) % GRID;
+                        const y = (cy + dy + GRID) % GRID;
+                        if (Math.random() < 0.65) target[y * GRID + x] = 1;
+                    }
+                }
+            }
+        } else if (style < 0.5) {
+            // Stripes
+            const period = 2 + (Math.random() * 5) | 0;
+            const angle = Math.random() < 0.5;
+            for (let y = 0; y < GRID; y++) {
+                for (let x = 0; x < GRID; x++) {
+                    const v = angle ? (x + y) : x;
+                    target[y * GRID + x] = (v % period) < (period / 2) ? 1 : 0;
+                }
+            }
+        } else if (style < 0.75) {
+            // Diamond / geometric
+            const cx = GRID / 2, cy = GRID / 2;
+            const size = GRID * (0.2 + Math.random() * 0.25);
+            for (let y = 0; y < GRID; y++) {
+                for (let x = 0; x < GRID; x++) {
+                    if (Math.abs(x - cx) + Math.abs(y - cy) < size) {
+                        target[y * GRID + x] = Math.random() < 0.55 ? 1 : 0;
+                    }
+                }
+            }
+        } else {
+            // Random noise
+            const density = 0.2 + Math.random() * 0.35;
+            for (let i = 0; i < GRID * GRID; i++) {
+                target[i] = Math.random() < density ? 1 : 0;
+            }
+        }
+
+        renderDraw();
+        clearRun();
+        statusEl.textContent = 'random pattern · click learn';
+    }
+
+    document.getElementById('randomBtn').addEventListener('click', randomize);
+
+    // Info panel toggle
+    const infoToggle = document.getElementById('infoToggle');
+    const infoPanel = document.getElementById('infoPanel');
+    infoToggle.addEventListener('click', () => {
+        infoPanel.classList.toggle('open');
+        infoToggle.classList.toggle('open');
     });
 
     resize();

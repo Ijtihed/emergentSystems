@@ -1,7 +1,7 @@
 (() => {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    const SIZE = 200;
+    const SIZE = 256;
     canvas.width = SIZE;
     canvas.height = SIZE;
 
@@ -234,6 +234,31 @@
 
     document.getElementById('resetBtn').addEventListener('click', () => {
         init();
+    });
+
+    function randomize() {
+        for (let s = 0; s < NUM_SPECIES; s++) grids[s].fill(0);
+        for (let s = 0; s < NUM_SPECIES; s++) {
+            const count = 2 + (Math.random() * 6) | 0;
+            for (let i = 0; i < count; i++) {
+                seedOrganism(
+                    (Math.random() * SIZE) | 0,
+                    (Math.random() * SIZE) | 0,
+                    s,
+                    5 + (Math.random() * 15) | 0
+                );
+            }
+        }
+    }
+
+    document.getElementById('randomBtn').addEventListener('click', randomize);
+
+    // Info panel toggle
+    const infoToggle = document.getElementById('infoToggle');
+    const infoPanel = document.getElementById('infoPanel');
+    infoToggle.addEventListener('click', () => {
+        infoPanel.classList.toggle('open');
+        infoToggle.classList.toggle('open');
     });
 
     let frameCount = 0;
